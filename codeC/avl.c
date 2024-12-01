@@ -1,11 +1,13 @@
 #include <CyReacteur.h>
 
-Arbre* creerArbre(int e){
+Arbre* creerArbre(int e, int a, b){
 	Arbre* nouv = malloc(sizeof(Arbre));
-	nouv->el = e;
+	nouv->id = e;
 	nouv->fg = NULL;
 	nouv->fd = NULL;
 	nouv->eq = 0;
+	nouv->capacite = a;
+	nouv->conso = b;
 	return nouv;	
 }
 
