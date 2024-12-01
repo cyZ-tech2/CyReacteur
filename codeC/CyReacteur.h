@@ -5,10 +5,13 @@
 //Structures
 
 typedef struct arbre{
-	int el;
+	int id;
 	struct arbre* fg;
 	struct arbre* fd;
 	int eq;
+	int capacite;
+	int conso;
+	
 }Arbre;
 
 //Fonctions
