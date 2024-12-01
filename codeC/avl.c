@@ -1,6 +1,6 @@
 #include <CyReacteur.h>
 
-Arbre* creerArbre(int e, int a, b){
+Arbre* creerArbre(int e, int a, int b){
 	Arbre* nouv = malloc(sizeof(Arbre));
 	nouv->id = e;
 	nouv->fg = NULL;
