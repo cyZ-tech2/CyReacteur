@@ -18,7 +18,7 @@ typedef struct arbre{
 
 //AVL
 //Creation
-Arbre* creerArbre(int e);
+Arbre* creerArbre(int e, int a, int b);
 //Rotations simples
 Arbre* rotationGauche(Arbre* a);
 Arbre* rotationDroite(Arbre* a);
