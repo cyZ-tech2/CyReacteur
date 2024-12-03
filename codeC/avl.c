@@ -43,7 +43,7 @@ Arbre* doubleRotationGauche(Arbre* a){
 }
 
 Arbre* doubleRotationDroite(Arbre* a){
-	a->fg = rotationDroite(a->fg);     // Double appel de RD ?
+	a->fg = rotationGauche(a->fg);   
 	return rotationDroite(a);
 }
 
