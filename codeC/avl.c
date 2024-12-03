@@ -96,4 +96,4 @@ Arbre* insertionAVL(Arbre* a, int e, int* h){
 	return a;
 }
 
-
+// Fonction (somme tous les fils)
