@@ -97,3 +97,20 @@ Arbre* insertionAVL(Arbre* a, int e, int* h){
 }
 
 // Fonction (somme tous les fils)
+
+int sommeConso(Node* root) {
+    if (root == NULL){
+        return 0; 
+    }
+
+    int somme = root->value;  // Pas besoin de pointeur
+
+    if (root->fg != NULL){
+        somme += sommeConso(root->fg); 
+    }
+    if (root->fd != NULL) {
+        somme += sommeConso(root->fd); 
+    }
+
+    return somme;
+}
