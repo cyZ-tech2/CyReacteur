@@ -102,15 +102,5 @@ int sommeConso(Node* racine) {
     if (racine == NULL){
         return 0; 
     }
-	
-    int somme = racine->id;  // Pas besoin de pointeur
-
-    if (racine->fg != NULL){
-        somme += sommeConso(racine->fg); 
-    }
-    if (racine->fd != NULL) {
-        somme += sommeConso(racine->fd); 
-    }
-
-    return somme;
+    return sommeConso(racine->fg) + sommeConso(racine->fd) + racine->id;
 }
