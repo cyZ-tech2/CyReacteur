@@ -23,7 +23,7 @@ if(fgets(longueur, MAX_TAMPON, fichier) == NULL){
 }
 
 while(fgets(longueur, MAX_TAMPON, fichier) != NULL){
-    int powerPlant, hvB, hvA, lv, capacity, load;
+    int powerPlant, hvB, hvA, lv, capacity, load;   // à revoir 
     char company[50], individual[50];
 
 
