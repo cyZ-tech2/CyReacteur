@@ -1,4 +1,4 @@
-#include <CyReacteur.h>
+#include <avl.h>
 
 Arbre* creerArbre(int e, int a, int b){
 	Arbre* nouv = malloc(sizeof(Arbre));
