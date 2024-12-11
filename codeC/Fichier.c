@@ -16,18 +16,17 @@ if (fichier == NULL){
 }
 
 
-if(fgets(longueur, MAX_TAMPON, fichier) == NULL){
+if(fgets(longueur, sizeof(longueur), fichier) == NULL){
     printf("Erreur fgets");
     fclose(fichier);
     exit(2);
 }
 
-while(fgets(longueur, MAX_TAMPON, fichier) != NULL){
-    int powerPlant, hvB, hvA, lv, capacity, load;   // à revoir 
-    char company[50], individual[50];
+while(fgets(longueur, sizeof(longueur), fichier) != NULL){
+    unsigned long powerPlant, hvB, hvA, lv, capacity, load, individual, company;
 
 
-  int result = sscanf(longueur, "%d;%d;%d;%d;%[^;];%[^;];%d;%d", &powerPlant, &hvB, &hvA, &lv, company, individual, &capacity, &load);
+  int result = sscanf(longueur, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu", &powerPlant, &hvB, &hvA, &lv, company, individual, &capacity, &load);
 
         if (result >= 6) {
             
