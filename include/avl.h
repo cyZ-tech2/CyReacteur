@@ -28,4 +28,4 @@ Arbre* doubleRotationDroite(Arbre* a);
 //equilibrage
 Arbre* equilibrerAVL(Arbre* a);
 //insertion
-Arbre* insertionAVL(Arbre* a, int e, int* h)
+Arbre* insertionAVL(Arbre* a, int e, int* h);
