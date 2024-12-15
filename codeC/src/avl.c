@@ -1,13 +1,11 @@
 #include <avl.h>
 
-Arbre* creerArbre(int e, int a, int b){
+Arbre* creerArbre(Donnees e){
 	Arbre* nouv = malloc(sizeof(Arbre));
-	nouv->id = e;
+	nouv->donnees = e;
 	nouv->fg = NULL;
 	nouv->fd = NULL;
 	nouv->eq = 0;
-	nouv->capacite = a;
-	nouv->conso = b;
 	return nouv;	
 }
 
@@ -67,7 +65,7 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
-Arbre* insertionAVL(Arbre* a, int e, int* h){
+Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
 	if(a==NULL){
 		*h=1;
 		return creerArbre(e);
