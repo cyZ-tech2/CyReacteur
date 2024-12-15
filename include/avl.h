@@ -7,8 +7,8 @@
 typedef struct donnees{
 	int id;
 	long unsigned centrale;
-    	long unsigned hv_b;
-    	long unsigned hv_a;
+    	long unsigned hvb;
+    	long unsigned hvb;
     	long unsigned lv;
     	long unsigned entrp;
     	long unsigned partc;
