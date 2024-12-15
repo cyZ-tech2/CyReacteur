@@ -4,14 +4,23 @@
 
 //Structures
 
-typedef struct arbre{
+typedef struct donnees{
 	int id;
+	long unsigned centrale;
+    	long unsigned hv_b;
+    	long unsigned hv_a;
+    	long unsigned lv;
+    	long unsigned entrp;
+    	long unsigned partc;
+    	long unsigned conso;
+    	long unsigned produc;
+}Donnees;
+
+typedef struct arbre{
+	Donnees d;
 	struct arbre* fg;
 	struct arbre* fd;
-	int eq;
-	int capacite;
-	int conso;
-	
+	int eq;	
 }Arbre;
 
 //Fonctions
