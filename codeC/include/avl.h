@@ -7,6 +7,7 @@ typedef enum {
     hv_b,
     h_va,
     lv,
+    erreur = -1
 }Type;
 
 typedef struct donnees{
