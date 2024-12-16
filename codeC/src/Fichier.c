@@ -60,18 +60,18 @@ Donnees* creationTMP(){
 }
 
 
-void ajouterValeur(FILE* fichier, Arbre* racine, ..){
-    if(fichier == NULL ){
+void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station){
+    if(fichier == NULL || racine == NULL || nom_station == NULL ){
         exit(5);
     }
     FILE* fichier_v2 = modifFichier(fichier);
     char longueur_v2[100];
+    Donnees* tmp = creationTMP();
 }
- while (fgets(longueur_v2, sizeof(longueur_v2), fichier_v2)) {
-        Donnees* tmp = creationTMP();
+ while (fgets(longueur_v2, sizeof(longueur_v2), fichier_v2)) {	
 
   if(sscanf(longueur, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu", &tmp->centrale, &tmp->hvb, &tmp->hvb, &tmp->lv, &tmp->entrp, &tmp->partc, &tmp->conso, &tmp->produc) == 8){
-        insertAVL(powerPlant, hvB, hvA, lv, capacity, load);
+        insertAVL(racine, nom_station);
         }else {
             printf("Erreur de traitement");
         }
