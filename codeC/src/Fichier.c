@@ -60,7 +60,7 @@ Donnees* creationTMP(){
 }
 
 
-void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station){
+void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h){
     if(fichier == NULL || racine == NULL || nom_station == NULL ){
         exit(5);
     }
@@ -71,7 +71,7 @@ void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station){
  while (fgets(longueur_v2, sizeof(longueur_v2), fichier_v2)) {	
 
   if(sscanf(longueur, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu", &tmp->centrale, &tmp->hvb, &tmp->hvb, &tmp->lv, &tmp->entrp, &tmp->partc, &tmp->conso, &tmp->produc) == 8){
-        insertAVL(racine, nom_station);
+        ajouteVal(*racine, nom_station, *h);
         }else {
             printf("Erreur de traitement");
         }
