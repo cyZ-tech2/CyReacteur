@@ -94,6 +94,24 @@ Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
 	return a;
 }
 
+void ajouteVal(Arbre* a, Donnees d, char* nom_station){
+	if(nom_station == NULL){
+		exit(8);
+	}
+	if(strcmp(station, "lv") == 0){
+		d.id = d.lv;
+		*a = insertAVL(*a, d, *h)
+	}
+	if(strcmp(station, "hv_b") == 0){
+		d.id = d.hv_b;
+		*a = insertAVL(*a, d, *h)
+	}
+	if(strcmp(station, "hv_a") == 0){
+		d.id = d.hv_a;
+		*a = insertAVL(*a, d, *h)
+	}
+}
+
 Type verifStation(Donnees d) {
     // Vérifier les conditions basées sur les champs des données
     if (d.lv > 0 && d.hv_a == -1 && d.hv_b == -1) {
