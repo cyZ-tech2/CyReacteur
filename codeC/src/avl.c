@@ -94,6 +94,19 @@ Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
 	return a;
 }
 
+Type verifStation(Donnees d) {
+    // Vérifier les conditions basées sur les champs des données
+    if (d.lv > 0 && d.hv_a == -1 && d.hv_b == -1) {
+        return lv;
+    } else if (d.hv_a > 0 && d.lv == -1 && d.hv_b != -1) {
+        return hv_a;
+    } else if (d.hv_b > 0 && d.hv_a == -1 && d.lv == -1) {
+        return hv_b; 
+    }
+    return -1; 
+}
+
+
 // Fonction (somme tous les fils)
 
 int sommeConso(Node* racine) {
