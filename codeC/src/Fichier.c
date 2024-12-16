@@ -93,7 +93,7 @@ void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h) {
                     *racine = insertAVL(*racine, *tmp, *h);
                     break;
 
-                case TYPE_UNKNOWN:
+               
                 default:
                     printf("Station inconnu");
                     break;
