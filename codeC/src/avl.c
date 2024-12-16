@@ -121,7 +121,7 @@ Type verifStation(Donnees d) {
     } else if (d.hv_b > 0 && d.hv_a == -1 && d.lv == -1) {
         return hv_b; 
     }
-    return -1; 
+    return erreur; 
 }
 
 
