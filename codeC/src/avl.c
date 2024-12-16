@@ -70,12 +70,12 @@ Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
 		*h=1;
 		return creerArbre(e);
 	}
-	else if(e < a->el){
-		a->fg = insertionAVL(a->fg, e,h);
+	else if(e.id < a->e.id){
+		a->fg = insertionAVL(a->fg, e, h);
 		*h=-*h;
 	}
-	else if(e > a->el){
-		a->fd = insertionAVL(a->fd, e,h);
+	else if(e.id > a->e.id){
+		a->fd = insertionAVL(a->fd, e, h);
 	}
 	else{
 		*h=0;
