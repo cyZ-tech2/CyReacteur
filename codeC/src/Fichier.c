@@ -74,7 +74,7 @@ void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h) {
         if (sscanf(longueur_v2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu",&tmp->centrale, &tmp->hvb, &tmp->hva, &tmp->lv, &tmp->entrp, &tmp->partc, &tmp->conso, &tmp->produc) == 8) {
 
           
-            PosteType type = verifStation(tmp);
+            Type type = verifStation(tmp);
 
          
             switch (type) {
