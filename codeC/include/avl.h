@@ -3,6 +3,11 @@
 #include <stdlib.h>
 
 //Structures
+typedef enum {
+    hv_b,
+    h_va,
+    lv,
+}Type;
 
 typedef struct donnees{
 	int id;
