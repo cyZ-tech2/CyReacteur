@@ -60,23 +60,49 @@ Donnees* creationTMP(){
 }
 
 
-void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h){
-    if(fichier == NULL || racine == NULL || nom_station == NULL ){
+void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h) {
+    if (fichier == NULL || racine == NULL || nom_station == NULL) {
         exit(5);
     }
-    FILE* fichier_v2 = modifFichier(fichier);
-    char longueur_v2[100];
-    Donnees* tmp = creationTMP();
-}
- while (fgets(longueur_v2, sizeof(longueur_v2), fichier_v2)) {	
 
-  if(sscanf(longueur, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu", &tmp->centrale, &tmp->hvb, &tmp->hvb, &tmp->lv, &tmp->entrp, &tmp->partc, &tmp->conso, &tmp->produc) == 8){
-        ajouteVal(*racine, nom_station, *h);
-        }else {
-            printf("Erreur de traitement");
+    FILE* fichier_v2 = modifFichier(fichier); // Modifier et préparer le fichier
+    char longueur_v2[100];
+    Donnees* tmp = creationTMP(); 
+
+    while (fgets(longueur_v2, sizeof(longueur_v2), fichier_v2)) {
+        
+        if (sscanf(longueur_v2, "%lu;%lu;%lu;%lu;%lu;%lu;%lu;%lu",&tmp->centrale, &tmp->hvb, &tmp->hva, &tmp->lv, &tmp->entrp, &tmp->partc, &tmp->conso, &tmp->produc) == 8) {
+
+          
+            PosteType type = verifStation(tmp);
+
+         
+            switch (type) {
+                case lv:
+                    tmp->id = tmp->lv;
+                    *racine = insertAVL(*racine, *tmp, *h); 
+                    break;
+
+                case hv_b:
+                    tmp->id = tmp->hvb;
+                    *racine = insertAVL(*racine, *tmp, *h); 
+                    break;
+
+                case hv_a:
+                    tmp->id = tmp->hva;
+                    *racine = insertAVL(*racine, *tmp, *h);
+                    break;
+
+                case TYPE_UNKNOWN:
+                default:
+                    printf("Station inconnu");
+                    break;
+            }
+        } else {
+            printf("Erreur de traitement pour la ligne : %s\n", longueur_v2);
         }
     }
-    fclose(fichier);
+
+    fclose(fichier_v2);
+    free(tmp);
 }
-
-
