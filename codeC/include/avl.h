@@ -3,18 +3,34 @@
 #include <stdlib.h>
 
 //Structures
+typedef enum {
+    hv_b,
+    h_va,
+    lv,
+    erreur = -1
+}Type;
+
+typedef struct donnees{
+	int id;
+	long unsigned centrale;
+    	long unsigned hvb;
+    	long unsigned hvb;
+    	long unsigned lv;
+    	long unsigned entrp;
+    	long unsigned partc;
+    	long unsigned conso;
+    	long unsigned produc;
+}Donnees;
 
 typedef struct arbre{
-	int id;
+	Donnees d;
 	struct arbre* fg;
 	struct arbre* fd;
-	int eq;
-	int capacite;
-	int conso;
-	
+	int eq;	
 }Arbre;
 
 //Fonctions
+Donnees* creationTMP();
 
 //AVL
 //Creation

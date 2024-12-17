@@ -1,13 +1,11 @@
 #include <avl.h>
 
-Arbre* creerArbre(int e, int a, int b){
+Arbre* creerArbre(Donnees e){
 	Arbre* nouv = malloc(sizeof(Arbre));
-	nouv->id = e;
+	nouv->donnees = e;
 	nouv->fg = NULL;
 	nouv->fd = NULL;
 	nouv->eq = 0;
-	nouv->capacite = a;
-	nouv->conso = b;
 	return nouv;	
 }
 
@@ -67,17 +65,17 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
-Arbre* insertionAVL(Arbre* a, int e, int* h){
+Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
 	if(a==NULL){
 		*h=1;
 		return creerArbre(e);
 	}
-	else if(e < a->el){
-		a->fg = insertionAVL(a->fg, e,h);
+	else if(e.id < a->e.id){
+		a->fg = insertionAVL(a->fg, e, h);
 		*h=-*h;
 	}
-	else if(e > a->el){
-		a->fd = insertionAVL(a->fd, e,h);
+	else if(e.id > a->e.id){
+		a->fd = insertionAVL(a->fd, e, h);
 	}
 	else{
 		*h=0;
@@ -95,6 +93,55 @@ Arbre* insertionAVL(Arbre* a, int e, int* h){
 	}
 	return a;
 }
+
+void ajouteVal(Arbre* a, Donnees d, char* nom_station){
+	if(nom_station == NULL){
+		exit(8);
+	}
+	if(strcmp(station, "lv") == 0){
+		d.id = d.lv;
+		*a = insertAVL(*a, d, *h)
+	}
+	if(strcmp(station, "hv_b") == 0){
+		d.id = d.hv_b;
+		*a = insertAVL(*a, d, *h)
+	}
+	if(strcmp(station, "hv_a") == 0){
+		d.id = d.hv_a;
+		*a = insertAVL(*a, d, *h)
+	}
+}
+
+Donnees* creationTMP(){
+    Donnees* tmp = malloc(sizeof(Donnees));
+        if(tmp == NULL){
+        exit(4);
+    }
+    
+	tmp->centrale = 0;
+    tmp->hvb = 0;
+    tmp->hvb = 0;
+    tmp->lv = 0;
+    tmp->entrp = 0;
+    tmp->partc = 0;
+    tmp->conso = 0;
+    tmp->produc = 0;
+    return tmp;
+}
+
+
+Type verifStation(Donnees d) {
+    // Vérifier les conditions basées sur les champs des données
+    if (d.lv > 0 && d.hv_a == -1 && d.hv_b == -1) {
+        return lv;
+    } else if (d.hv_a > 0 && d.lv == -1 && d.hv_b != -1) {
+        return hv_a;
+    } else if (d.hv_b > 0 && d.hv_a == -1 && d.lv == -1) {
+        return hv_b; 
+    }
+    return erreur; 
+}
+
 
 // Fonction (somme tous les fils)
 
