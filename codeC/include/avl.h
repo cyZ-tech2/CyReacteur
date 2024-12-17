@@ -30,6 +30,7 @@ typedef struct arbre{
 }Arbre;
 
 //Fonctions
+Donnees* creationTMP();
 
 //AVL
 //Creation
