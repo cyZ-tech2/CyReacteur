@@ -34,30 +34,6 @@ FILE* modifFichier(FILE* fichier){
     return fichier_v2;
 }
 
-
-int main(){
-FILE* fichier = NULL;
-FILE* fichier_v2 = NULL;
-}
-
-Donnees* creationTMP(){
-    Donnees* tmp = malloc(sizeof(Donnees));
-        if(tmp == NULL){
-        exit(4);
-    }
-    
-	tmp->centrale = 0;
-    tmp->hvb = 0;
-    tmp->hvb = 0;
-    tmp->lv = 0;
-    tmp->entrp = 0;
-    tmp->partc = 0;
-    tmp->conso = 0;
-    tmp->produc = 0;
-    return tmp;
-}
-
-
 void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h) {
     if (fichier == NULL || racine == NULL || nom_station == NULL) {
         exit(5);
