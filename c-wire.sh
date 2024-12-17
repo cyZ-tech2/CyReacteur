@@ -30,7 +30,10 @@ elif [[ "$*" = *hv?' 'all* ]] || [[ "$*" = *hv?' 'indiv* ]] ; then # verif optio
 	exit 1
 fi
 
-if [ ! -x 'codeC/exec' ] ; then #verif executable C
+if [ -x 'codeC/exec' ] ; then #verif executable C
+	./codeC/exec
+else
 	codeC/make
+	./codeC/exec
 fi
 
