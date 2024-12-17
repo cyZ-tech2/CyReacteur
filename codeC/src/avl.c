@@ -112,6 +112,24 @@ void ajouteVal(Arbre* a, Donnees d, char* nom_station){
 	}
 }
 
+Donnees* creationTMP(){
+    Donnees* tmp = malloc(sizeof(Donnees));
+        if(tmp == NULL){
+        exit(4);
+    }
+    
+	tmp->centrale = 0;
+    tmp->hvb = 0;
+    tmp->hvb = 0;
+    tmp->lv = 0;
+    tmp->entrp = 0;
+    tmp->partc = 0;
+    tmp->conso = 0;
+    tmp->produc = 0;
+    return tmp;
+}
+
+
 Type verifStation(Donnees d) {
     // Vérifier les conditions basées sur les champs des données
     if (d.lv > 0 && d.hv_a == -1 && d.hv_b == -1) {
