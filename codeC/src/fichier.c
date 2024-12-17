@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "include/fichier.h"
 
 FILE* modifFichier(FILE* fichier){
     if(fichier == NULL){
