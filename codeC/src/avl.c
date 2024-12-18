@@ -1,38 +1,46 @@
 #include <avl.h>
 
-Arbre* creerArbre(Donnees e){
-	Arbre* nouv = malloc(sizeof(Arbre));
-	nouv->donnees = e;
-	nouv->fg = NULL;
-	nouv->fd = NULL;
-	nouv->eq = 0;
-	return nouv;	
+Arbre* creerArbre(Donnees d) {
+    Arbre* nouv = malloc(sizeof(Arbre));
+    if (nouv == NULL) {
+        perror("Erreur d'allocation mémoire");
+        exit(EXIT_FAILURE);
+    }
+    nouv->donnees = d;
+    nouv->fg = NULL;
+    nouv->fd = NULL;
+    nouv->eq = 0;
+    return nouv;
 }
 
-Arbre* rotationGauche(Arbre* a){
-	Arbre* pivot = a->fd;
-	int eq_a, eq_p;
-	a->fd = pivot->fg;
-	pivot->fg = a;
-	eq_a = a->eq;
-	eq_p = pivot->eq;
-	a->eq = eq_a - max(eq_p,0) - 1;
-	pivot->eq = min(eq_a-2, eq_a + eq_p-2, eq_p-1);
-	a = pivot;
-	return a;
+// Rotation gauche de l'arbre (à gauche)
+Arbre* rotationGauche(Arbre* a) {
+    Arbre* pivot = a->fd;  
+    int eq_a, eq_p;
+    a->fd = pivot->fg;     
+    pivot->fg = a;        
+    eq_a = a->eq;
+    eq_p = pivot->eq;
+    
+    a->eq = eq_a - max(eq_p, 0) - 1;          
+    pivot->eq = min(eq_a - 2, eq_a + eq_p - 2); 
+    
+    return pivot;
 }
 
-Arbre* rotationDroite(Arbre* a){
-	Arbre* pivot = a->fg;
-	int eq_a, eq_p;
-	a->fg = pivot->fd;
-	pivot->fd = a;
-	eq_a = a->eq;
-	eq_p = pivot->eq;
-	a->eq = eq_a - min(eq_p,0) + 1;
-	pivot->eq = max(eq_a+2, eq_a + eq_p+2, eq_p+1);
-	a = pivot;
-	return a;
+// Rotation droite de l'arbre (à droite)
+Arbre* rotationDroite(Arbre* a) {
+    Arbre* pivot = a->fg;  
+    int eq_a, eq_p;
+    a->fg = pivot->fd;     
+    pivot->fd = a;         
+    eq_a = a->eq;
+    eq_p = pivot->eq;
+    
+    a->eq = eq_a - min(eq_p, 0) + 1;          
+    pivot->eq = max(eq_a + 2, eq_a + eq_p + 2); 
+    
+    return pivot; 
 }
 
 Arbre* doubleRotationGauche(Arbre* a){
@@ -65,81 +73,100 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
-Arbre* insertionAVL(Arbre* a, Donnees e, int* h){
-	if(a==NULL){
-		*h=1;
-		return creerArbre(e);
-	}
-	else if(e.id < a->e.id){
-		a->fg = insertionAVL(a->fg, e, h);
-		*h=-*h;
-	}
-	else if(e.id > a->e.id){
-		a->fd = insertionAVL(a->fd, e, h);
-	}
-	else{
-		*h=0;
-		return a;
-	}
-	if(*h != 0){
-		a->eq = a->eq + *h;
-		a = equilibrerAVL(a);
-		if(a->eq == 0){
-			*h=0
-		}
-		else{
-			*h=1;
-		}
-	}
-	return a;
-}
 
-void ajouteVal(Arbre* a, Donnees d, char* nom_station){
-	if(nom_station == NULL){
-		exit(8);
-	}
-	if(strcmp(station, "lv") == 0){
-		d.id = d.lv;
-		*a = insertAVL(*a, d, *h)
-	}
-	if(strcmp(station, "hv_b") == 0){
-		d.id = d.hv_b;
-		*a = insertAVL(*a, d, *h)
-	}
-	if(strcmp(station, "hv_a") == 0){
-		d.id = d.hv_a;
-		*a = insertAVL(*a, d, *h)
-	}
-}
 
-Donnees* creationTMP(){
-    Donnees* tmp = malloc(sizeof(Donnees));
-        if(tmp == NULL){
-        exit(4);
+Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
+    if (a == NULL) {
+        *h = 1;
+        return creerArbre(d);
     }
-    
-	tmp->centrale = 0;
-    tmp->hvb = 0;
-    tmp->hvb = 0;
-    tmp->lv = 0;
-    tmp->entrp = 0;
-    tmp->partc = 0;
-    tmp->conso = 0;
-    tmp->produc = 0;
-    return tmp;
+
+    if (d.id < a->donnees.id) {
+        a->fg = insertionAVL(a->fg, d, h);
+        *h = -*h;
+    } else if (d.id > a->donnees.id) {
+        a->fd = insertionAVL(a->fd, d, h);
+    } else {
+        *h = 0;
+        return a;
+    }
+
+    if (*h != 0) {
+        a->eq += *h;
+
+        if (a->eq >= 2) {
+            if (a->fd->eq >= 0) {
+                return rotationGauche(a);
+            } else {
+                return doubleRotationGauche(a);
+            }
+        } else if (a->eq <= -2) {
+            if (a->fg->eq <= 0) {
+                return rotationDroite(a);
+            } else {
+                return doubleRotationDroite(a);
+            }
+        }
+
+        *h = (a->eq == 0) ? 0 : 1;
+    }
+
+    return a;
 }
 
 
-Type verifStation(Donnees d) {
-    // Vérifier les conditions basées sur les champs des données
-    if (d.lv > 0 && d.hv_a == -1 && d.hv_b == -1) {
-        return lv;
-    } else if (d.hv_a > 0 && d.lv == -1 && d.hv_b != -1) {
-        return hv_a;
-    } else if (d.hv_b > 0 && d.hv_a == -1 && d.lv == -1) {
-        return hv_b; 
+void freeAVL(Arbre* a) {
+    if (a == NULL) {
+        return;
     }
-    return erreur; 
+
+    // Libérer les sous-arbres gauche et droit
+    freeAVL(a->fg);
+    freeAVL(a->fd);
+
+    // Libérer le nœud courant
+    free(a);
+}
+
+
+
+// Fonction pour transformer un fichier CSV en remplaçant les '-' par '0' (fonctionne)
+FILE* transformerFichierCSV(const char* chemin_fichier) {
+    FILE* fichier = fopen(chemin_fichier, "r");
+    if (fichier == NULL) {
+        perror("Erreur: fichier source non ouvert");
+        exit(EXIT_FAILURE);
+    }
+
+    // Créer un fichier temporaire pour les modifications
+    FILE* fichier_temp = fopen("C:\\Users\\bAdplayer\\Documents\\test\\c-wire_v00_temp.txt", "w");
+    if (fichier_temp == NULL) {
+        perror("Erreur lors de la création du fichier temporaire");
+        fclose(fichier);
+        exit(EXIT_FAILURE);
+    }
+
+    char ligne[200];
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        for (int i = 0; ligne[i] != '\0'; i++) {
+            if (ligne[i] == '-') {
+                ligne[i] = '0';  // Remplacer '-' par '0'
+            }
+        }
+        fputs(ligne, fichier_temp);  // Écrire la ligne modifiée
+    }
+
+    fclose(fichier);
+    fclose(fichier_temp);
+
+    // Réouvrir le fichier temporaire en mode lecture
+    fichier_temp = fopen("C:\\Users\\bAdplayer\\Documents\\test\\c-wire_v00_temp.txt", "r");
+    if (fichier_temp == NULL) {
+        perror("Erreur lors de la réouverture du fichier temporaire");
+        exit(EXIT_FAILURE);
+    }
+
+    return fichier_temp;
 }
 
 
