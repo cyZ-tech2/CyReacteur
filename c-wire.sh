@@ -6,7 +6,7 @@ aide(){
 }
 
 for i in $*; do # aide
-	if [ $i = "-h" ] ; then
+	if [ "$i" = "-h" ] ; then
 		aide
 		exit 0
 	fi
@@ -39,12 +39,16 @@ else
 	rm -r tmp/*
 fi
 
+case $2 in
+	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" > "tmp/filtreStation.csv" ;;
+	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" > "tmp/filtreStation.csv" ;;
+	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" > "tmp/filtreStation.csv" ;;
+esac
 
-
-if [ -x 'codeC/exec' ] ; then #verif executable C
-	./codeC/exec
-else
-	make -C codeC
-	./codeC/exec
-fi
+#if [ -x 'codeC/exec' ] ; then #verif executable C
+#	./codeC/exec
+#else
+#	make -C codeC
+#	./codeC/exec
+#fi
 
