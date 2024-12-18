@@ -33,7 +33,7 @@ fi
 if [ -x 'codeC/exec' ] ; then #verif executable C
 	./codeC/exec
 else
-	codeC/make
+	make -C codeC
 	./codeC/exec
 fi
 
