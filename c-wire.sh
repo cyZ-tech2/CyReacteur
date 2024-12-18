@@ -5,11 +5,14 @@ aide(){
 	return 0
 }
 
-if [[ "$*" = *-h* ]] ; then # aide
-	aide
-	exit 0
+for i in $*; do # aide
+	if [ $i = "-h" ] ; then
+		aide
+		exit 0
+	fi
+done
 
-elif [[ "$1" != *.csv ]] ; then # verif fichier de donnees
+if [[ "$1" != *.csv ]] ; then # verif fichier de donnees
 	echo "fichier d'entrée invalide"
 	aide
 	exit 1
@@ -35,6 +38,8 @@ if [ ! -d tmp ] ; then # verif dossier tmp
 else
 	rm -r tmp/*
 fi
+
+
 
 if [ -x 'codeC/exec' ] ; then #verif executable C
 	./codeC/exec
