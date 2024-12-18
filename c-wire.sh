@@ -30,6 +30,12 @@ elif [[ "$*" = *hv?' 'all* ]] || [[ "$*" = *hv?' 'indiv* ]] ; then # verif optio
 	exit 1
 fi
 
+if [ ! -d tmp ] ; then # verif dossier tmp
+	mkdir tmp
+else
+	rm -r tmp/*
+fi
+
 if [ -x 'codeC/exec' ] ; then #verif executable C
 	./codeC/exec
 else
