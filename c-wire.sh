@@ -40,19 +40,19 @@ else
 fi
 
 case $2 in #filtrage
-	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" > "tmp/filtreStation.csv" 
-	grep '^[^-;]*;[^-;]*;-;-;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
+	grep '^[^-;]*;[^-;]*;-;-;[^-;]*;-' "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
 	;;
-	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" > "tmp/filtreStation.csv" 
-	grep '^[^-;]*;-;[^-;]*;-;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" | cut -d ';' -f 3,7 > "tmp/filtreStation.csv" 
+	grep '^[^-;]*;-;[^-;]*;-;[^-;]*;-' "$1" | cut -d ';' -f 3,8 > "tmp/filtreConso.csv" 
 	;;
-	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" > "tmp/filtreStation.csv" 
+	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" | cut -d ';' -f 4,7 > "tmp/filtreStation.csv" 
 	case $3 in
-		all) grep '^[^-;]*;-;-;[^-;]*;' "$1" > "tmp/filtreConso.csv" 
+		all) grep '^[^-;]*;-;-;[^-;]*;' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
 		;;
-		comp) grep '^[^-;]*;-;-;[^-;]*;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+		comp) grep '^[^-;]*;-;-;[^-;]*;[^-;]*;-' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
 		;;
-		indiv) grep '^[^-;]*;-;-;[^-;]*;-;[^-;]*;' "$1" > "tmp/filtreConso.csv" 
+		indiv) grep '^[^-;]*;-;-;[^-;]*;-;[^-;]*;' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
 		;;
 	esac
 	;;
