@@ -5,3 +5,5 @@ input/c-wire_v00.dat
 tmp/filtreStation.csv
 tmp/filtreConso.csv
 input/c-wire_v25.csv
+*.o
+codeC/exec

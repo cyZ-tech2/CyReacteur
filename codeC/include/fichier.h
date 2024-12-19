@@ -4,6 +4,7 @@
 
 #include "avl.h"
 
-FILE* modifFichier(FILE* fichier);
-
-void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h);
+// Fonction pour lire le fichier et construire l'AVL
+Arbre* lireFichierEtConstruireAVL(const char* cheminFichier);
+// Fonction pour afficher l'AVL dans un fichier
+void ecrireAVLDansFichier(Arbre* a, const char* cheminFichier);

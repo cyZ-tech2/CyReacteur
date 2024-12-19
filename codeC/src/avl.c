@@ -138,7 +138,27 @@ void freeAVL(Arbre* a) {
     free(a);
 }
 
-// Fonction (somme tous les fils)
+void afficherAVL(Arbre* a, FILE* fichier) {
+    if (a == NULL) {
+        return; // Aucun affichage pour un nœud vide
+    }
+    
+    // Parcourir l'arbre en ordre croissant
+    afficherAVL(a->fg, fichier); // Affiche le sous-arbre gauche
+    
+    // Affiche le nœud courant
+    if (fichier == stdout) {
+        // Affichage dans la console
+        printf("ID: %d, Conso: %lu, Produc: %lu\n", a->donnees.id, a->donnees.conso, a->donnees.produc);
+    } else {
+        // Écriture dans un fichier
+        fprintf(fichier, "ID: %d, Conso: %lu, Produc: %lu\n", a->donnees.id, a->donnees.conso, a->donnees.produc);
+    }
+    
+    afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
+}
+
+// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
 void sommeConso(Arbre* AVLstation) {
     FILE* fichier = fopen("tmp/filtreConso", "w");
     if (fichier == NULL) {

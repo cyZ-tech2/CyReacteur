@@ -17,9 +17,6 @@ typedef struct arbre {
     int eq; // équilibre de l'arbre
 } Arbre;
 
-//Fonctions
-Donnees* creationTMP();
-
 //AVL
 //Creation
 Arbre* creerArbre(Donnees d);
@@ -33,3 +30,11 @@ Arbre* doubleRotationDroite(Arbre* a);
 Arbre* equilibrerAVL(Arbre* a);
 //insertion
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h);
+//recherche une station dans l'arbre
+Arbre* rechercheStation(Arbre* a, int id);
+//supprime l'arbre
+void freeAVL(Arbre* a);
+//affiche l'arbre
+void afficherAVL(Arbre* a, FILE* fichier);
+// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
+void sommeConso(Arbre* AVLstation);
