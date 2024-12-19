@@ -8,6 +8,9 @@ int main(int argc, char * argv[]) {
     // Lire le fichier et construire l'AVL
     Arbre* a = construireAVL(fichierStations);
 
+    // On fait la somme des consommations de chaque consommateur
+    sommeConso(a);
+
     // Afficher l'AVL dans la console
     printf("Affichage de l'AVL dans la console :\n");
     afficherAVL(a, stdout);

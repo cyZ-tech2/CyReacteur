@@ -117,10 +117,10 @@ Arbre* rechercheStation(Arbre* a, int id){
     if(a->donnees.id == id){
         return a;
     }
-    else if (a->donnees.id < id){
+    else if (a->donnees.id > id){
         return rechercheStation(a->fg,id);
     }
-    else if (a->donnees.id > id){
+    else if (a->donnees.id < id){
         return rechercheStation(a->fd,id);
     }
 }
@@ -160,14 +160,13 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 
 // Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
 void sommeConso(Arbre* AVLstation) {
-    FILE* fichier = fopen("tmp/filtreConso", "w");
+    FILE* fichier = fopen("tmp/filtreConso.csv", "r");
     if (fichier == NULL) {
         perror("Erreur: fichier filtreConso non ouvert");
         exit(EXIT_FAILURE);
     }
 
     char ligne[256];
-
     Arbre* tmpAVL = AVLstation;
     unsigned long tmpId, tmpConso;
     // Lire le fichier ligne par ligne
