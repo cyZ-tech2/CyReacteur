@@ -1,5 +1,5 @@
+#include "../include/avl.h"
 #include "../include/fichier.h"
-
 
 // Fonction pour transformer un fichier CSV en remplaçant les '-' par '0' (fonctionne)
 FILE* transformerFichierCSV(const char* chemin_fichier) {
