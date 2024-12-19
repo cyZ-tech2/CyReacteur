@@ -1,4 +1,5 @@
 #include "../include/avl.h"
+#include "maths.c"
 
 Arbre* creerArbre(Donnees d) {
     Arbre* nouv = malloc(sizeof(Arbre));
@@ -113,13 +114,13 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
 }
 
 Arbre* rechercheStation(Arbre* a, int id){
-    if(a.donnees.id == id){
+    if(a->donnees.id == id){
         return a;
     }
-    else if (a.donnees.id < id){
+    else if (a->donnees.id < id){
         return rechercheStation(a->fg,id);
     }
-    else if (a.donnees.id > id){
+    else if (a->donnees.id > id){
         return rechercheStation(a->fd,id);
     }
 }
@@ -192,7 +193,7 @@ void sommeConso(Arbre* AVLstation) {
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
         if (sscanf(ligne, "%lu;%lu", &tmpId, &tmpConso) == 2) {
             tmpAVL = rechercheStation(AVLstation,tmpId);
-            tmpAVL.donnees.conso += tmpConso;
+            tmpAVL->donnees.conso += tmpConso;
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }

@@ -22,7 +22,7 @@ Donnees* creationTMP();
 
 //AVL
 //Creation
-Arbre* creerArbre(int e, int a, int b);
+Arbre* creerArbre(Donnees d);
 //Rotations simples
 Arbre* rotationGauche(Arbre* a);
 Arbre* rotationDroite(Arbre* a);
@@ -32,4 +32,4 @@ Arbre* doubleRotationDroite(Arbre* a);
 //equilibrage
 Arbre* equilibrerAVL(Arbre* a);
 //insertion
-Arbre* insertionAVL(Arbre* a, int e, int* h);
+Arbre* insertionAVL(Arbre* a, Donnees d, int* h);
