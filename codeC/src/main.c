@@ -1,9 +1,9 @@
 #include "../include/fichier.h"
 #include "../include/maths.h"
 
-int main() {
+int main(int argc, char * argv[]) {
     const char* fichierStations = "tmp/filtreStation.csv";
-    const char* fichierSortie = "tmp/tests/*.csv";
+    const char* fichierSortie = argv[1];
 
     // Lire le fichier et construire l'AVL
     Arbre* a = construireAVL(fichierStations);

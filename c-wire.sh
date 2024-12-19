@@ -60,8 +60,6 @@ else
 	rm -rf tests/*
 fi
 
-touch tests/$2_$3.csv
-
 case $2 in #filtrage
 	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
 	grep '^[^-;]*;[^-;]*;-;-;[^-;]*;-' "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
@@ -82,7 +80,7 @@ case $2 in #filtrage
 esac
 
 make -C codeC
-./codeC/exec
+./codeC/exec $2_$3.csv
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
