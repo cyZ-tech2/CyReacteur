@@ -5,9 +5,20 @@ aide(){
 	return 0
 }
 
+debut=$(date +%s)
+
+duree(){
+	#retourne le temps écoulé depuis le début du programme
+	fin=$(date +%s)
+	duree=$(( $fin - $debut ))
+	echo "$duree secondes"
+	return 0
+}
+
 for i in $*; do # aide
 	if [ "$i" = "-h" ] ; then
 		aide
+		duree
 		exit 0
 	fi
 done
@@ -15,21 +26,25 @@ done
 if [[ "$1" != *.csv ]] || [ ! -f "$1" ] ; then # verif fichier de donnees
 	echo "fichier d'entrée invalide"
 	aide
+	duree
 	exit 1
 
 elif [ "$2" != "hvb" ] && [ "$2" != "hva" ] && [ "$2" != "lv" ] ; then   # verif type de station
 	echo "type de station invalide"
 	aide
+	duree
 	exit 1
 
 elif [ "$3" != "comp" ] && [ "$3" != "indiv" ] && [ "$3" != "all" ] ; then # verif type de consommateur
 	echo "type de consommateur invalide"
 	aide
+	duree
 	exit 1
 
 elif [[ "$*" = *hv?' 'all* ]] || [[ "$*" = *hv?' 'indiv* ]] ; then # verif option authorisée
 	echo "option non autorisée"
 	aide
+	duree
 	exit 1
 fi
 
@@ -65,3 +80,4 @@ esac
 #	./codeC/exec
 #fi
 
+duree
