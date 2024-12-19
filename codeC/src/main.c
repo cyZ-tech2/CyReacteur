@@ -2,8 +2,7 @@
 #include "../include/maths.h"
 
 int main() {
-    const char* fichierEntree = "C:\\Users\\bAdplayer\\Documents\\test\\output.txt";
-    const char* fichierSortie = "C:\\Users\\bAdplayer\\Documents\\test\\output_avl.txt";
+    const char* fichierStations = "../../tmp/filtreStation";
 
     // Lire le fichier et construire l'AVL
     Arbre* a = construireAVL(fichierEntree);
