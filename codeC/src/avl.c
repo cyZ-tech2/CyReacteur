@@ -177,7 +177,7 @@ FILE* transformerFichierCSV(const char* chemin_fichier) {
 }
 
 // Fonction (somme tous les fils)
-void sommeConso(Arbre* Station) {
+void sommeConso(Arbre* AVLstation) {
     FILE* fichier = fopen("tmp/filtreConso", "w");
     if (fichier == NULL) {
         perror("Erreur: fichier filtreConso non ouvert");
@@ -186,11 +186,13 @@ void sommeConso(Arbre* Station) {
 
     char ligne[256];
 
+    Arbre* tmpAVL = AVLstation;
     unsigned long tmpId, tmpConso;
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
         if (sscanf(ligne, "%lu;%lu", &tmpId, &tmpConso) == 2) {
-
+            tmpAVL = rechercheStation(AVLstation,tmpId);
+            tmpAVL.donnees.conso += tmpConso;
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }
