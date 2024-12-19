@@ -12,7 +12,7 @@ for i in $*; do # aide
 	fi
 done
 
-if [[ "$1" != *.csv ]] ; then # verif fichier de donnees
+if [[ "$1" != *.csv ]] || [ ! -f "$1" ] ; then # verif fichier de donnees
 	echo "fichier d'entrée invalide"
 	aide
 	exit 1
