@@ -146,9 +146,9 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 }
 
 
-int main() {
-    // Ouvrir le fichier d'entrée
-    FILE* fichier = fopen("C:\\Users\\bAdplayer\\Documents\\test\\output.txt", "r");
+// Fonction pour lire le fichier et construire l'AVL
+Arbre* lireFichierEtConstruireAVL(const char* cheminFichier) {
+    FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         perror("Erreur: fichier source non ouvert");
         exit(EXIT_FAILURE);
@@ -177,24 +177,40 @@ int main() {
     }
     fclose(fichier);
 
+    return a;
+}
+
+// Fonction pour afficher l'AVL dans un fichier
+void ecrireAVLDansFichier(Arbre* a, const char* cheminFichier) {
+    FILE* fichierSortie = fopen(cheminFichier, "w");
+    if (fichierSortie == NULL) {
+        perror("Erreur: impossible d'ouvrir le fichier de sortie");
+        exit(EXIT_FAILURE);
+    }
+
+    afficherAVL(a, fichierSortie);
+    fclose(fichierSortie);
+}
+
+// Fonction principale
+int main() {
+    const char* fichierEntree = "C:\\Users\\bAdplayer\\Documents\\test\\output.txt";
+    const char* fichierSortie = "C:\\Users\\bAdplayer\\Documents\\test\\output_avl.txt";
+
+    // Lire le fichier et construire l'AVL
+    Arbre* a = lireFichierEtConstruireAVL(fichierEntree);
+
     // Afficher l'AVL dans la console
     printf("Affichage de l'AVL dans la console :\n");
     afficherAVL(a, stdout);
 
     // Écrire l'AVL dans un fichier de sortie
-    FILE* fichierSortie = fopen("C:\\Users\\bAdplayer\\Documents\\test\\output_avl.txt", "w");
-    if (fichierSortie == NULL) {
-        perror("Erreur: impossible d'ouvrir le fichier de sortie");
-        freeAVL(a);
-        exit(EXIT_FAILURE);
-    }
-
-    printf("Écriture de l'AVL dans output_avl.txt...\n");
-    afficherAVL(a, fichierSortie);
-    fclose(fichierSortie);
+    printf("Écriture de l'AVL dans %s...\n", fichierSortie);
+    ecrireAVLDansFichier(a, fichierSortie);
 
     // Libérer l'arbre AVL
     freeAVL(a);
     printf("Programme terminé avec succès.\n");
+
     return EXIT_SUCCESS;
 }
