@@ -80,7 +80,7 @@ case $2 in #filtrage
 esac
 
 make -C codeC
-./codeC/exec $2_$3.csv
+./codeC/exec tests/$2_$3.csv
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
