@@ -51,8 +51,16 @@ fi
 if [ ! -d tmp ] ; then # verif dossier tmp
 	mkdir tmp
 else
-	rm -r tmp/*
+	rm -rf tmp/*
 fi
+
+if [ ! -d tests ] ; then # verif dossier tests
+	mkdir tests
+else
+	rm -rf tests/*
+fi
+
+touch tests/$2_$3.csv
 
 case $2 in #filtrage
 	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
@@ -73,11 +81,13 @@ case $2 in #filtrage
 	;;
 esac
 
-if [ -x 'codeC/exec' ] ; then #verif executable C
-	./codeC/exec
-else
-	make -C codeC
-	./codeC/exec
-fi
+make -C codeC
+./codeC/exec
+
+#if [ -x 'codeC/exec' ] ; then #verif executable C
+#	./codeC/exec
+#else
+
+#fi
 
 duree

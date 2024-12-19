@@ -2,10 +2,11 @@
 #include "../include/maths.h"
 
 int main() {
-    const char* fichierStations = "../../tmp/filtreStation";
+    const char* fichierStations = "tmp/filtreStation.csv";
+    const char* fichierSortie = "tmp/tests/*.csv";
 
     // Lire le fichier et construire l'AVL
-    Arbre* a = construireAVL(fichierEntree);
+    Arbre* a = construireAVL(fichierStations);
 
     // Afficher l'AVL dans la console
     printf("Affichage de l'AVL dans la console :\n");
