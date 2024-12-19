@@ -6,7 +6,7 @@ int main() {
     const char* fichierSortie = "C:\\Users\\bAdplayer\\Documents\\test\\output_avl.txt";
 
     // Lire le fichier et construire l'AVL
-    Arbre* a = lireFichierEtConstruireAVL(fichierEntree);
+    Arbre* a = construireAVL(fichierEntree);
 
     // Afficher l'AVL dans la console
     printf("Affichage de l'AVL dans la console :\n");
