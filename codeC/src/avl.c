@@ -1,4 +1,4 @@
-#include <avl.h>
+#include "../include/avl.h"
 
 Arbre* creerArbre(Donnees d) {
     Arbre* nouv = malloc(sizeof(Arbre));

@@ -73,11 +73,11 @@ case $2 in #filtrage
 	;;
 esac
 
-#if [ -x 'codeC/exec' ] ; then #verif executable C
-#	./codeC/exec
-#else
-#	make -C codeC
-#	./codeC/exec
-#fi
+if [ -x 'codeC/exec' ] ; then #verif executable C
+	./codeC/exec
+else
+	make -C codeC
+	./codeC/exec
+fi
 
 duree

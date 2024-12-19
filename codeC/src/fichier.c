@@ -1,4 +1,4 @@
-#include "include/fichier.h"
+#include "../include/fichier.h"
 
 
 // Fonction pour transformer un fichier CSV en remplaçant les '-' par '0' (fonctionne)
