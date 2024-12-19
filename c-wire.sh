@@ -39,10 +39,23 @@ else
 	rm -r tmp/*
 fi
 
-case $2 in
-	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" > "tmp/filtreStation.csv" ;;
-	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" > "tmp/filtreStation.csv" ;;
-	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" > "tmp/filtreStation.csv" ;;
+case $2 in #filtrage
+	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" > "tmp/filtreStation.csv" 
+	grep '^[^-;]*;[^-;]*;-;-;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+	;;
+	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" > "tmp/filtreStation.csv" 
+	grep '^[^-;]*;-;[^-;]*;-;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+	;;
+	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" > "tmp/filtreStation.csv" 
+	case $3 in
+		all) grep '^[^-;]*;-;-;[^-;]*;' "$1" > "tmp/filtreConso.csv" 
+		;;
+		comp) grep '^[^-;]*;-;-;[^-;]*;[^-;]*;-' "$1" > "tmp/filtreConso.csv" 
+		;;
+		indiv) grep '^[^-;]*;-;-;[^-;]*;-;[^-;]*;' "$1" > "tmp/filtreConso.csv" 
+		;;
+	esac
+	;;
 esac
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
