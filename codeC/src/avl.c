@@ -1,5 +1,5 @@
 #include "../include/avl.h"
-#include "maths.c"
+#include "../include/maths.h"
 
 Arbre* creerArbre(Donnees d) {
     Arbre* nouv = malloc(sizeof(Arbre));
