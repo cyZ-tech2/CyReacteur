@@ -5,7 +5,7 @@ all: exec
 avl.o : src/avl.c include/avl.h include/maths.h
 	$(CC) -c $< -o $@
 
-fichier.o : src/fichier.c include/fichier.h include/avl.h
+fichier.o : src/fichier.c include/fichier.h
 	$(CC) -c $< -o $@
 
 maths.o : src/maths.c include/maths.h
