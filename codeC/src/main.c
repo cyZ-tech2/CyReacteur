@@ -1,5 +1,4 @@
 #include "../include/fichier.h"
-#include "../include/avl.h"
 #include "../include/maths.h"
 
 int main() {

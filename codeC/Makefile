@@ -11,7 +11,7 @@ fichier.o : src/fichier.c include/fichier.h
 maths.o : src/maths.c include/maths.h
 	$(CC) -c $< -o $@
 	
-main.o : src/main.c include/avl.h include/fichier.h include/maths.h
+main.o : src/main.c include/fichier.h include/maths.h
 	$(CC) -c $< -o $@
 
 exec: avl.o fichier.o maths.o main.o
