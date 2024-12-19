@@ -73,8 +73,6 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
-
-
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     if (a == NULL) {
         *h = 1;
@@ -114,6 +112,17 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     return a;
 }
 
+Arbre* rechercheStation(Arbre* a, int id){
+    if(a.donnees.id == id){
+        return a;
+    }
+    else if (a.donnees.id < id){
+        return rechercheStation(a->fg,id);
+    }
+    else if (a.donnees.id > id){
+        return rechercheStation(a->fd,id);
+    }
+}
 
 void freeAVL(Arbre* a) {
     if (a == NULL) {
@@ -127,8 +136,6 @@ void freeAVL(Arbre* a) {
     // Libérer le nœud courant
     free(a);
 }
-
-
 
 // Fonction pour transformer un fichier CSV en remplaçant les '-' par '0' (fonctionne)
 FILE* transformerFichierCSV(const char* chemin_fichier) {
@@ -169,12 +176,24 @@ FILE* transformerFichierCSV(const char* chemin_fichier) {
     return fichier_temp;
 }
 
-
 // Fonction (somme tous les fils)
-
-int sommeConso(Node* racine) {
-    if (racine == NULL){
-        return 0; 
+void sommeConso(Arbre* Station) {
+    FILE* fichier = fopen("tmp/filtreConso", "w");
+    if (fichier == NULL) {
+        perror("Erreur: fichier filtreConso non ouvert");
+        exit(EXIT_FAILURE);
     }
-    return sommeConso(racine->fg) + sommeConso(racine->fd) + racine->id;
+
+    char ligne[256];
+
+    unsigned long tmpId, tmpConso;
+    // Lire le fichier ligne par ligne
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        if (sscanf(ligne, "%lu;%lu", &tmpId, &tmpConso) == 2) {
+
+        } else {
+            fprintf(stderr, "Erreur de format : %s\n", ligne);
+        }
+    }
+    fclose(fichier);
 }
