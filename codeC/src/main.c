@@ -14,7 +14,7 @@ int main() {
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
-    ecrireAVLDansFichier(a, fichierSortie);
+    AVLDansFichier(a, fichierSortie);
 
     // Libérer l'arbre AVL
     freeAVL(a);
