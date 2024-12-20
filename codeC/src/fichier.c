@@ -28,13 +28,13 @@ Arbre* construireAVL(const char* cheminFichier) {
 }
 
 // Fonction pour afficher l'AVL dans un fichier
-void AVLDansFichier(Arbre* a, const char* cheminFichier) {
+void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation, const char* typeConso) {
     FILE* fichierSortie = fopen(cheminFichier, "w");
     if (fichierSortie == NULL) {
         perror("Erreur: impossible d'ouvrir le fichier de sortie");
         exit(EXIT_FAILURE);
     }
-
+    fprintf(fichierSortie, "Station %s:Capacité:Consommation (%s)\n",typeStation,typeConso);
     afficherAVL(a, fichierSortie);
     fclose(fichierSortie);
 }

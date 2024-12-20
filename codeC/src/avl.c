@@ -149,10 +149,10 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     // Affiche le nœud courant
     if (fichier == stdout) {
         // Affichage dans la console
-        printf("ID: %d, Produc: %lu, Conso: %lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
+        printf("%d:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
     } else {
         // Écriture dans un fichier
-        fprintf(fichier, "ID: %d, Produc: %lu, Conso: %lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
+        fprintf(fichier, "%d:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
     }
     
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit

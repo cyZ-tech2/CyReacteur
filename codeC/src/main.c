@@ -4,6 +4,8 @@
 int main(int argc, char * argv[]) {
     const char* fichierStations = "tmp/filtreStation.csv";
     const char* fichierSortie = argv[1];
+    const char* typeStation = argv[2];
+    const char* typeConso = argv[3];
 
     // Lire le fichier et construire l'AVL
     Arbre* a = construireAVL(fichierStations);
@@ -17,7 +19,7 @@ int main(int argc, char * argv[]) {
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
-    AVLDansFichier(a, fichierSortie);
+    AVLDansFichier(a, fichierSortie, typeStation, typeConso);
 
     // Libérer l'arbre AVL
     freeAVL(a);

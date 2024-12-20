@@ -11,3 +11,5 @@ codeC/exec
 codeC/fichier.o
 codeC/main.o
 tests/lv_all.csv
+tests/hvb_comp.csv
+tests/.~lock.hvb_comp.csv\#
