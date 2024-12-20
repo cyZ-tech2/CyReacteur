@@ -118,15 +118,17 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     return a;
 }
 
-Arbre* rechercheStation(Arbre* a, int id){
-    if(a->donnees.id == id){
-        return a;
-    }
-    else if (a->donnees.id > id){
-        return rechercheStation(a->fg,id);
-    }
-    else if (a->donnees.id < id){
-        return rechercheStation(a->fd,id);
+void rechercheStation(Arbre* station, Donnees d){
+    if(station!=NULL){
+        if(station->donnees.id == d.id){
+            station->donnees.conso += d.conso;
+        }
+        else if (station->donnees.id > d.id){
+            rechercheStation(station->fg,d);
+        }
+        else {
+            rechercheStation(station->fd,d);
+        }
     }
 }
 
@@ -164,13 +166,9 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 }
 
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
-    Arbre* tmpAVL = AVLstation;
-    tmpAVL = rechercheStation(AVLstation,AVLconso->donnees.id);
-    tmpAVL->donnees.conso += AVLconso->donnees.conso;
-    if(AVLconso->fg != NULL){
+    if(AVLconso != NULL && AVLstation != NULL){
+        rechercheStation(AVLstation,AVLconso->donnees);
         sommeConso(AVLstation,AVLconso->fg);
-    }
-    if(AVLconso->fd != NULL){
-        sommeConso(AVLstation,AVLconso->fd);
+        sommeConso(AVLstation,AVLconso->fd);  
     }
 }

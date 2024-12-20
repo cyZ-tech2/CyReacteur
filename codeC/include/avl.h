@@ -31,7 +31,7 @@ Arbre* equilibrerAVL(Arbre* a);
 //insertion
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h);
 //recherche une station dans l'arbre
-Arbre* rechercheStation(Arbre* a, int id);
+void rechercheStation(Arbre** station, Donnees d);
 //supprime l'arbre
 void freeAVL(Arbre* a);
 //affiche l'arbre
