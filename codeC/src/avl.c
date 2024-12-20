@@ -80,6 +80,11 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
         return creerArbre(d);
     }
 
+    if(d.id == a->donnees.id){
+        a->donnees.conso += d.conso;
+        *h = 0;
+        return a;
+    } 
     if (d.id < a->donnees.id) {
         a->fg = insertionAVL(a->fg, d, h);
         *h = -*h;
@@ -181,12 +186,14 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     fclose(fichier);
 }*/
 
-void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {
-    if(AVLconso != NULL){
-        Arbre* tmpAVL = AVLstation;
-        tmpAVL = rechercheStation(AVLstation,AVLconso->donnees.id);
-        tmpAVL->donnees.conso += AVLconso->donnees.conso;
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
+    Arbre* tmpAVL = AVLstation;
+    tmpAVL = rechercheStation(AVLstation,AVLconso->donnees.id);
+    tmpAVL->donnees.conso += AVLconso->donnees.conso;
+    if(AVLconso->fg != NULL){
         sommeConso(AVLstation,AVLconso->fg);
+    }
+    if(AVLconso->fd != NULL){
         sommeConso(AVLstation,AVLconso->fd);
     }
 }
