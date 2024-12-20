@@ -61,26 +61,52 @@ else
 fi
 
 case $2 in #filtrage
-	hvb) grep '^[^-;]*;[^-;]*;-;-;-;-' "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
-	grep '^[^-;]*;[^-;]*;-;-;[^-;]*;-' "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
+	hvb) if [ $# = 4 ] ; then
+		grep "^$4;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
+		grep "^$4;[^-;]*;-;-;[^-;]*;-" "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
+	else
+		grep "^[^-;]*;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
+		grep "^[^-;]*;[^-;]*;-;-;[^-;]*;-" "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
+	fi
 	;;
-	hva) grep '^[^-;]*;[^-;]*;[^-;]*;-;-;-' "$1" | cut -d ';' -f 3,7 > "tmp/filtreStation.csv" 
-	grep '^[^-;]*;-;[^-;]*;-;[^-;]*;-' "$1" | cut -d ';' -f 3,8 > "tmp/filtreConso.csv" 
+	hva) if [ $# = 4 ] ; then
+		grep "^$4;[^-;]*;[^-;]*;-;-;-" "$1" | cut -d ';' -f 3,7 > "tmp/filtreStation.csv" 
+		grep "^$4;-;[^-;]*;-;[^-;]*;-" "$1" | cut -d ';' -f 3,8 > "tmp/filtreConso.csv" 
+	else
+		grep "^[^-;]*;[^-;]*;[^-;]*;-;-;-" "$1" | cut -d ';' -f 3,7 > "tmp/filtreStation.csv" 
+		grep "^[^-;]*;-;[^-;]*;-;[^-;]*;-" "$1" | cut -d ';' -f 3,8 > "tmp/filtreConso.csv" 
+	fi
 	;;
-	lv) grep '^[^-;]*;-;[^-;]*;[^-;]*;-;-' "$1" | cut -d ';' -f 4,7 > "tmp/filtreStation.csv" 
-	case $3 in
-		all) grep '^[^-;]*;-;-;[^-;]*;' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
-		;;
-		comp) grep '^[^-;]*;-;-;[^-;]*;[^-;]*;-' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
-		;;
-		indiv) grep '^[^-;]*;-;-;[^-;]*;-;[^-;]*;' "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
-		;;
-	esac
+	lv) if [ $# = 4 ] ; then
+		grep "^$4;-;[^-;]*;[^-;]*;-;-" "$1" | cut -d ';' -f 4,7 > "tmp/filtreStation.csv" 
+		case $3 in
+			all) grep "^$4;-;-;[^-;]*;" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+			comp) grep "^$4;-;-;[^-;]*;[^-;]*;-" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+			indiv) grep "^$4;-;-;[^-;]*;-;[^-;]*;" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+		esac	
+	else
+		grep "^[^-;]*;-;[^-;]*;[^-;]*;-;-" "$1" | cut -d ';' -f 4,7 > "tmp/filtreStation.csv" 
+		case $3 in
+			all) grep "^[^-;]*;-;-;[^-;]*;" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+			comp) grep "^[^-;]*;-;-;[^-;]*;[^-;]*;-" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+			indiv) grep "^[^-;]*;-;-;[^-;]*;-;[^-;]*;" "$1" | cut -d ';' -f 4,8 > "tmp/filtreConso.csv" 
+			;;
+		esac
+	fi
 	;;
 esac
 
 make -C codeC
-./codeC/exec tests/$2_$3.csv $2 $3
+if [ $# = 4 ] ; then
+	./codeC/exec tests/$2_$3_$4.csv $2 $3 $4
+else
+	./codeC/exec tests/$2_$3.csv $2 $3
+fi
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
