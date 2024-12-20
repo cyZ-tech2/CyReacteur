@@ -22,7 +22,7 @@ int main(int argc, char * argv[]) {
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
     AVLDansFichier(a, fichierSortie, typeStation, typeConso);
 
-    if(strcmp(typeStation,"lv")==0 && strcmp(typeConso,"all")==0){
+    if(strcmp(typeStation,"lv")==0 && strcmp(typeConso,"all")==0 && argc == 4){
         diffCapConso(fichierSortie);
     }
 
