@@ -163,29 +163,6 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
-// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
-/*void sommeConso(Arbre* AVLstation) {
-    FILE* fichier = fopen("tmp/filtreConso.csv", "r");
-    if (fichier == NULL) {
-        perror("Erreur: fichier filtreConso non ouvert");
-        exit(EXIT_FAILURE);
-    }
-
-    char ligne[256];
-    Arbre* tmpAVL = AVLstation;
-    unsigned long tmpId, tmpConso;
-    // Lire le fichier ligne par ligne
-    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        if (sscanf(ligne, "%lu;%lu", &tmpId, &tmpConso) == 2) {
-            tmpAVL = rechercheStation(AVLstation,tmpId);
-            tmpAVL->donnees.conso += tmpConso;
-        } else {
-            fprintf(stderr, "Erreur de format : %s\n", ligne);
-        }
-    }
-    fclose(fichier);
-}*/
-
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     Arbre* tmpAVL = AVLstation;
     tmpAVL = rechercheStation(AVLstation,AVLconso->donnees.id);
