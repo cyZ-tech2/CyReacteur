@@ -1,4 +1,5 @@
 #include "../include/fichier.h"
+#include "../include/maths.h"
 
 // Fonction pour lire le fichier et construire l'AVL
 Arbre* construireAVL(const char* cheminFichier) {
@@ -37,4 +38,31 @@ void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation
     fprintf(fichierSortie, "Station %s:Capacité:Consommation (%s)\n",typeStation,typeConso);
     afficherAVL(a, fichierSortie);
     fclose(fichierSortie);
+}
+
+void diffCapConso(const char* cheminFichier){
+    FILE* fichier = fopen(cheminFichier, "r");
+    if (fichier == NULL) {
+        perror("Erreur: impossible d'ouvrir le fichier de sortie");
+        exit(EXIT_FAILURE);
+    }
+    char ligne[256];
+    FILE* fichierMinMax = fopen("tmp/minmaxTmp.csv","w");
+    if (fichierMinMax == NULL) {
+        perror("Erreur: le fichier minmaxTmp.csv n'a pas pu être créé");
+        exit(EXIT_FAILURE);
+    }
+    Donnees d;
+    
+    fgets(ligne, sizeof(ligne), fichier);
+
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        if (sscanf(ligne, "%d:%lu:%lu", &d.id, &d.produc, &d.conso) == 3) {
+            fprintf(fichierMinMax, "%d:%lu:%lu:%lu\n",d.id, d.produc, d.conso, labs(d.produc-d.conso));
+        } else {
+            fprintf(stderr, "Erreur de format : %s\n", ligne);
+        }
+    }
+    fclose(fichier);
+    fclose(fichierMinMax);
 }

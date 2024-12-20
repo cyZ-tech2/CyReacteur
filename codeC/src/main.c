@@ -1,5 +1,6 @@
 #include "../include/fichier.h"
 #include "../include/maths.h"
+#include <string.h>
 
 int main(int argc, char * argv[]) {
     const char* fichierStations = "tmp/filtreStation.csv";
@@ -20,6 +21,10 @@ int main(int argc, char * argv[]) {
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
     AVLDansFichier(a, fichierSortie, typeStation, typeConso);
+
+    if(strcmp(typeStation,"lv")==0 && strcmp(typeConso,"all")==0){
+        diffCapConso(fichierSortie);
+    }
 
     // Libérer l'arbre AVL
     freeAVL(a);

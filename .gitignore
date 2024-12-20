@@ -14,3 +14,4 @@ tests/lv_all.csv
 tests/hvb_comp.csv
 tests/.~lock.hvb_comp.csv\#
 tests/hvb_comp_1.csv
+*.csv
