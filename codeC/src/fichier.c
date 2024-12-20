@@ -2,7 +2,7 @@
 #include "../include/maths.h"
 
 // Fonction pour lire le fichier et construire l'AVL
-Arbre* construireAVL(const char* cheminFichier) {
+Arbre* construireAVLStation(const char* cheminFichier) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         perror("Erreur: fichier source non ouvert");
@@ -18,6 +18,32 @@ Arbre* construireAVL(const char* cheminFichier) {
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
         if (sscanf(ligne, "%d;%lu", &d.id, &d.produc) == 2) {
+            a = insertionAVL(a, d, &h);
+        } else {
+            fprintf(stderr, "Erreur de format : %s\n", ligne);
+        }
+    }
+    fclose(fichier);
+
+    return a;
+}
+
+Arbre* construireAVLConso(const char* cheminFichier) {
+    FILE* fichier = fopen(cheminFichier, "r");
+    if (fichier == NULL) {
+        perror("Erreur: fichier source non ouvert");
+        exit(EXIT_FAILURE);
+    }
+
+    Arbre* a = NULL;
+    char ligne[256];
+    int h = 0;
+    Donnees d;
+    d.produc = 0;
+
+    // Lire le fichier ligne par ligne
+    while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
+        if (sscanf(ligne, "%d;%lu", &d.id, &d.conso) == 2) {
             a = insertionAVL(a, d, &h);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);

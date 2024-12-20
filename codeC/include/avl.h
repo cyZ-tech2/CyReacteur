@@ -37,4 +37,4 @@ void freeAVL(Arbre* a);
 //affiche l'arbre
 void afficherAVL(Arbre* a, FILE* fichier);
 // Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
-void sommeConso(Arbre* AVLstation);
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso);

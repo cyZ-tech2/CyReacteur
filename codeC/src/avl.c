@@ -159,7 +159,7 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 }
 
 // Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
-void sommeConso(Arbre* AVLstation) {
+/*void sommeConso(Arbre* AVLstation) {
     FILE* fichier = fopen("tmp/filtreConso.csv", "r");
     if (fichier == NULL) {
         perror("Erreur: fichier filtreConso non ouvert");
@@ -179,4 +179,14 @@ void sommeConso(Arbre* AVLstation) {
         }
     }
     fclose(fichier);
+}*/
+
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {
+    if(AVLconso != NULL){
+        Arbre* tmpAVL = AVLstation;
+        tmpAVL = rechercheStation(AVLstation,AVLconso->donnees.id);
+        tmpAVL->donnees.conso += AVLconso->donnees.conso;
+        sommeConso(AVLstation,AVLconso->fg);
+        sommeConso(AVLstation,AVLconso->fd);
+    }
 }

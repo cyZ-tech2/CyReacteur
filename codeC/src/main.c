@@ -9,25 +9,23 @@ int main(int argc, char * argv[]) {
     const char* typeConso = argv[3];
 
     // Lire le fichier et construire l'AVL
-    Arbre* a = construireAVL(fichierStations);
+    Arbre* Stations = construireAVLStation(fichierStations);
+    Arbre* Conso = construireAVLConso("tmp/filtreConso.csv");
 
     // On fait la somme des consommations de chaque consommateur
-    sommeConso(a);
-
-    // Afficher l'AVL dans la console
-    printf("Affichage de l'AVL dans la console :\n");
-    afficherAVL(a, stdout);
+    sommeConso(Stations,Conso);
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
-    AVLDansFichier(a, fichierSortie, typeStation, typeConso);
+    AVLDansFichier(Stations, fichierSortie, typeStation, typeConso);
 
     if(strcmp(typeStation,"lv")==0 && strcmp(typeConso,"all")==0 && argc == 4){
         diffCapConso(fichierSortie);
     }
 
     // Libérer l'arbre AVL
-    freeAVL(a);
+    freeAVL(Stations);
+    freeAVL(Conso);
     printf("Programme terminé avec succès.\n");
 
     return EXIT_SUCCESS;
