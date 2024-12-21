@@ -118,20 +118,6 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     return a;
 }
 
-void rechercheStation(Arbre* station, Donnees d){
-    if(station!=NULL){
-        if(station->donnees.id == d.id){
-            station->donnees.conso += d.conso;
-        }
-        else if (station->donnees.id > d.id){
-            rechercheStation(station->fg,d);
-        }
-        else {
-            rechercheStation(station->fd,d);
-        }
-    }
-}
-
 void freeAVL(Arbre* a) {
     if (a == NULL) {
         return;
@@ -156,10 +142,10 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     // Affiche le nœud courant
     if (fichier == stdout) {
         // Affichage dans la console
-        printf("%d:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
+        printf("%lu:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
     } else {
         // Écriture dans un fichier
-        fprintf(fichier, "%d:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
+        fprintf(fichier, "%lu:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
     }
     
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
@@ -167,8 +153,8 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
-        rechercheStation(AVLstation,AVLconso->donnees);
-        sommeConso(AVLstation,AVLconso->fg);
-        sommeConso(AVLstation,AVLconso->fd);  
+        AVLstation->donnees.conso += AVLconso->donnees.conso;
+        sommeConso(AVLstation->fg,AVLconso->fg);
+        sommeConso(AVLstation->fd,AVLconso->fd);  
     }
 }

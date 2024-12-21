@@ -17,7 +17,7 @@ Arbre* construireAVLStation(const char* cheminFichier) {
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
-        if (sscanf(ligne, "%d;%lu", &d.id, &d.produc) == 2) {
+        if (sscanf(ligne, "%lu;%lu", &d.id, &d.produc) == 2) {
             a = insertionAVL(a, d, &h);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
@@ -43,7 +43,7 @@ Arbre* construireAVLConso(const char* cheminFichier) {
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
-        if (sscanf(ligne, "%d;%lu", &d.id, &d.conso) == 2) {
+        if (sscanf(ligne, "%lu;%lu", &d.id, &d.conso) == 2) {
             a = insertionAVL(a, d, &h);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
@@ -83,8 +83,8 @@ void diffCapConso(const char* cheminFichier){
     fgets(ligne, sizeof(ligne), fichier);
 
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        if (sscanf(ligne, "%d:%lu:%lu", &d.id, &d.produc, &d.conso) == 3) {
-            fprintf(fichierMinMax, "%d:%lu:%lu:%lu\n",d.id, d.produc, d.conso, labs(d.produc-d.conso));
+        if (sscanf(ligne, "%lu:%lu:%lu", &d.id, &d.produc, &d.conso) == 3) {
+            fprintf(fichierMinMax, "%lu:%lu:%lu:%lu\n",d.id, d.produc, d.conso, labs(d.produc-d.conso));
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }

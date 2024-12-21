@@ -4,7 +4,7 @@
 
 //Structures
 typedef struct donnees {
-    int id;
+    unsigned long id;
     unsigned long conso;
     unsigned long produc;
 } Donnees;
@@ -30,8 +30,6 @@ Arbre* doubleRotationDroite(Arbre* a);
 Arbre* equilibrerAVL(Arbre* a);
 //insertion
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h);
-//recherche une station dans l'arbre
-void rechercheStation(Arbre** station, Donnees d);
 //supprime l'arbre
 void freeAVL(Arbre* a);
 //affiche l'arbre
