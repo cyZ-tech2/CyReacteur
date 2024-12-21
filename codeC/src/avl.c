@@ -153,7 +153,7 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
-        AVLstation->donnees.conso += AVLconso->donnees.conso;
+        AVLstation->donnees.conso = AVLconso->donnees.conso;
         sommeConso(AVLstation->fg,AVLconso->fg);
         sommeConso(AVLstation->fd,AVLconso->fd);  
     }
