@@ -17,7 +17,7 @@ Cas indisponibles : hvb indiv/all et hva indiv/all
 ### Commande
 
 ```bash
-./c-wire.sh input/[input_file] [type_station(hvb, hva, lv)] [type_consommateur(indiv, comp, all)] (centrale_id)
+./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_consommateur(indiv, comp, all)] (centrale_id)
 ```
 
 ### Exemple
