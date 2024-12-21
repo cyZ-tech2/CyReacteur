@@ -1,4 +1,5 @@
-#include <avl.h>
+#include "../include/avl.h"
+#include "../include/maths.h"
 
 Arbre* creerArbre(Donnees d) {
     Arbre* nouv = malloc(sizeof(Arbre));
@@ -73,14 +74,17 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
-
-
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     if (a == NULL) {
         *h = 1;
         return creerArbre(d);
     }
 
+    if(d.id == a->donnees.id){
+        a->donnees.conso += d.conso;
+        *h = 0;
+        return a;
+    } 
     if (d.id < a->donnees.id) {
         a->fg = insertionAVL(a->fg, d, h);
         *h = -*h;
@@ -114,7 +118,6 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     return a;
 }
 
-
 void freeAVL(Arbre* a) {
     if (a == NULL) {
         return;
@@ -128,53 +131,30 @@ void freeAVL(Arbre* a) {
     free(a);
 }
 
-
-
-// Fonction pour transformer un fichier CSV en remplaçant les '-' par '0' (fonctionne)
-FILE* transformerFichierCSV(const char* chemin_fichier) {
-    FILE* fichier = fopen(chemin_fichier, "r");
-    if (fichier == NULL) {
-        perror("Erreur: fichier source non ouvert");
-        exit(EXIT_FAILURE);
+void afficherAVL(Arbre* a, FILE* fichier) {
+    if (a == NULL) {
+        return; // Aucun affichage pour un nœud vide
     }
-
-    // Créer un fichier temporaire pour les modifications
-    FILE* fichier_temp = fopen("C:\\Users\\bAdplayer\\Documents\\test\\c-wire_v00_temp.txt", "w");
-    if (fichier_temp == NULL) {
-        perror("Erreur lors de la création du fichier temporaire");
-        fclose(fichier);
-        exit(EXIT_FAILURE);
+    
+    // Parcourir l'arbre en ordre croissant
+    afficherAVL(a->fg, fichier); // Affiche le sous-arbre gauche
+    
+    // Affiche le nœud courant
+    if (fichier == stdout) {
+        // Affichage dans la console
+        printf("%lu:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
+    } else {
+        // Écriture dans un fichier
+        fprintf(fichier, "%lu:%lu:%lu\n", a->donnees.id, a->donnees.produc, a->donnees.conso);
     }
-
-    char ligne[200];
-    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
-        for (int i = 0; ligne[i] != '\0'; i++) {
-            if (ligne[i] == '-') {
-                ligne[i] = '0';  // Remplacer '-' par '0'
-            }
-        }
-        fputs(ligne, fichier_temp);  // Écrire la ligne modifiée
-    }
-
-    fclose(fichier);
-    fclose(fichier_temp);
-
-    // Réouvrir le fichier temporaire en mode lecture
-    fichier_temp = fopen("C:\\Users\\bAdplayer\\Documents\\test\\c-wire_v00_temp.txt", "r");
-    if (fichier_temp == NULL) {
-        perror("Erreur lors de la réouverture du fichier temporaire");
-        exit(EXIT_FAILURE);
-    }
-
-    return fichier_temp;
+    
+    afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
-
-// Fonction (somme tous les fils)
-
-int sommeConso(Node* racine) {
-    if (racine == NULL){
-        return 0; 
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
+    if(AVLconso != NULL && AVLstation != NULL){
+        AVLstation->donnees.conso = AVLconso->donnees.conso;
+        sommeConso(AVLstation->fg,AVLconso->fg);
+        sommeConso(AVLstation->fd,AVLconso->fd);  
     }
-    return sommeConso(racine->fg) + sommeConso(racine->fd) + racine->id;
 }

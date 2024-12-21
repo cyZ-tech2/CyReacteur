@@ -1,11 +1,24 @@
 CC=gcc
-SRC=$(wildcard *.c)
-OBJ=$(SRC:.c=.o)
 
 all: exec
 
-%.o : %.c tri.h
+avl.o : src/avl.c include/avl.h include/maths.h
+	$(CC) -c $< -o $@
+
+fichier.o : src/fichier.c include/fichier.h
+	$(CC) -c $< -o $@
+
+maths.o : src/maths.c include/maths.h
 	$(CC) -c $< -o $@
 	
-exec: $(OBJ)
+main.o : src/main.c include/fichier.h include/maths.h
+	$(CC) -c $< -o $@
+
+exec: avl.o fichier.o maths.o main.o
 	$(CC) $^ -o $@
+
+clean:
+	rm -rf *.o
+
+mrproper: clean
+	rm -rf exec

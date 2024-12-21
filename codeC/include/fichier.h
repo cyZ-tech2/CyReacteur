@@ -2,8 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <avl.h>
+#include "avl.h"
 
-FILE* modifFichier(FILE* fichier);
+// Fonction pour lire le fichier et construire l'AVL
+Arbre* construireAVLStation(const char* cheminFichier);
 
-void ajouterValeur(FILE* fichier, Arbre* racine, char* nom_station, int* h);
+Arbre* construireAVLConso(const char* cheminFichier);
+// Fonction pour afficher l'AVL dans un fichier
+void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation, const char* typeConso);
+
+void diffCapConso(const char* cheminFichier);
