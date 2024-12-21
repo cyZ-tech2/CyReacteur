@@ -2,15 +2,15 @@
 
 aide(){
 	#message d'aide
- 	echo"Aide : "
-	echo"Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
-	echo"ARGUMENT :"
-	echo"ARG[1] : Fichier d'entrée"
-	echo"ARG[2] : Type de station (hvb, hva ou lv)"
-	echo"ARG[3] : Type de consommateur (comp, indiv ou all)"
-	echo"ARG[4] : (Optionnel) : l'ID de la centrale électrique"
-	echo"OPTION :"
-	echo"-h pour accéder à l'aide de cette commande"
+ 	echo "Aide : "
+	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
+	echo "ARGUMENT :"
+	echo "ARG[1] : Fichier d'entrée"
+	echo "ARG[2] : Type de station (hvb, hva ou lv)"
+	echo "ARG[3] : Type de consommateur (comp, indiv ou all)"
+	echo "ARG[4] : (Optionnel) : l'ID de la centrale électrique"
+	echo "OPTION :"
+	echo "-h pour accéder à l'aide de cette commande"
 	return 0
 }
 
