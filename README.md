@@ -1,4 +1,4 @@
-# CyWATT
+# CyWATT ⚡
 
 Bievenue sur CyWatt !
 
@@ -7,10 +7,10 @@ Notre programme a pour objectif d’analyser des types de stations (HV-B, HV-A o
 
 ## Arguments 
 
-1 - fichier_entrée 
-2 - type_station : (hvb, hva ou lv)
-3 - type_consommateur : (comp, indiv ou all)
-4 - centrale_id : l'ID de la centrale électrique (Optionnel)
+- fichier_entrée 
+- type_station : (hvb, hva ou lv)
+- type_consommateur : (comp, indiv ou all)
+- centrale_id : l'ID de la centrale électrique (Optionnel)
 
 Cas indisponibles : hvb indiv/all et hva indiv/all
 
