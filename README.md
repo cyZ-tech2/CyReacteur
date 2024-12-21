@@ -32,12 +32,3 @@ Cas indisponibles : hvb indiv/all et hva indiv/all
 ./c-wire.sh input/c-wire_v25.dat hva comp
 ```
 
-## Code d'erreur
-
-### Shell erreur
-
-A remplir
-
-### C erreur
-
-A remplir
