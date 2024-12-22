@@ -3,7 +3,7 @@
 # Retourne un message d'aide
 aide(){
  	echo "Aide : "
-	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
+	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" # à voir
 	echo "ARGUMENT :"
 	echo "ARG[1] : Fichier d'entrée"
 	echo "ARG[2] : Type de station (hvb, hva ou lv)"
@@ -136,14 +136,6 @@ case $2 in
 esac
 
 echo "Filtrage terminé !"
-
-echo "Nous trions vos données..."
-
-# On trie les données pour s'assurer qu'elles soient bien triées par ordre de station
-sort -t';' -k1n < "tmp/filtreStation.csv" 1<> "tmp/filtreStation.csv"
-sort -t';' -k1n < "tmp/filtreConso.csv" 1<> "tmp/filtreConso.csv" 
-
-echo "Tri terminé !"
 
 echo "Nous traitons vos données"
 
