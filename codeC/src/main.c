@@ -26,7 +26,6 @@ int main(int argc, char * argv[]) {
     // Libérer l'arbre AVL
     freeAVL(Stations);
     freeAVL(Conso);
-    printf("Programme terminé avec succès.\n");
 
-    return EXIT_SUCCESS;
+    return 0;
 }

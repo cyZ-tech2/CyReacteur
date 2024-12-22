@@ -75,6 +75,8 @@ else
 	rm -rf graphs/*
 fi
 
+echo "Nous filtrons vos données..."
+
 case $2 in #filtrage
 	hvb) if [ $# = 4 ] ; then
 		grep "^$4;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
@@ -116,8 +118,16 @@ case $2 in #filtrage
 	;;
 esac
 
+echo "Filtrage terminé !"
+
+echo "Nous trions vos données..."
+
 sort -t';' -k1n < "tmp/filtreStation.csv" 1<> "tmp/filtreStation.csv"
 sort -t';' -k1n < "tmp/filtreConso.csv" 1<> "tmp/filtreConso.csv" 
+
+echo "Tri terminé !"
+
+echo "Nous traitons vos données"
 
 make -C codeC
 if [ $# = 4 ] ; then
@@ -125,6 +135,8 @@ if [ $# = 4 ] ; then
 else
 	./codeC/exec tests/$2_$3.csv $2 $3
 fi
+
+echo "Traitement terminé !"
 
 if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
 	sort -t ':' -k3n < "tmp/minmaxTmp.csv" 1<> "tmp/minmaxTmp.csv"
@@ -139,4 +151,4 @@ fi
 
 #fi
 
-duree
+echo "Le programme à duré :" &duree
