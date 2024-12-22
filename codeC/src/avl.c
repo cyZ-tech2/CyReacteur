@@ -100,6 +100,7 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
         return creerArbre(d);
     }
 
+    // Quand plusieurs consommateurs sont reliés à la même station on ajoute leurs consommation dans un même noeud
     if(d.id == a->donnees.id){
         a->donnees.conso += d.conso;
         *h = 0;
@@ -110,9 +111,6 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
         *h = -*h;
     } else if (d.id > a->donnees.id) {
         a->fd = insertionAVL(a->fd, d, h);
-    } else {
-        *h = 0;
-        return a;
     }
 
     if (*h != 0) {
