@@ -11,8 +11,7 @@ int main(int argc, char * argv[]) {
 
     // On lit les fichiers temporaires et on construits les AVL
     Arbre* Stations = construireAVLStation(fichierStations);
-    Stations = construireAVLConso("tmp/filtreConso.csv",Stations);
-
+    Stations = sommeConso("tmp/filtreConso.csv",Stations);
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);

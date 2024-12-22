@@ -158,17 +158,14 @@ void afficherAVL(Arbre* a, FILE* fichier) {
 }
 
 // Fonction qui ajoute les valeurs de consommation de l'AVL des conso dans l'AVL des stations
-Arbre* ajoutConso(Arbre* a, Donnees d) {  
-
-    /* (Pour les consommateurs) 
-    Quand plusieurs consommateurs sont reliés à la même station (même id) on somme leur consommation*/
-    if(d.id == a->donnees.id){ 
-        a->donnees.conso += d.conso;
+Arbre* ajoutConso(Arbre* a, unsigned long id, unsigned long conso) {  
+    if(id == a->donnees.id){ 
+        a->donnees.conso += conso;
         return a;
-    } else if (d.id < a->donnees.id) {
-        a->fg = ajoutConso(a->fg, d, h);
-    } else if (d.id > a->donnees.id) {
-        a->fd = ajoutConso(a->fd, d, h);
+    } else if (id < a->donnees.id) {
+        a->fg = ajoutConso(a->fg, id,conso);
+    } else if (id > a->donnees.id) {
+        a->fd = ajoutConso(a->fd, id,conso);
     } 
 
     return a;
