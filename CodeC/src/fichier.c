@@ -1,7 +1,7 @@
 #include "../include/fichier.h"
 #include "../include/maths.h"
 
-// Fonction pour lire le fichier et construire l'AVL
+// Fonction pour construire l'AVL des stations
 Arbre* construireAVLStation(const char* cheminFichier) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
@@ -28,7 +28,7 @@ Arbre* construireAVLStation(const char* cheminFichier) {
     return a;
 }
 
-// Fonction pour construire l'arbre
+// Fonction pour construire l'AVL des consommateurs
 Arbre* construireAVLConso(const char* cheminFichier) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
@@ -67,7 +67,7 @@ void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation
     fclose(fichierSortie);
 }
 
-// Fonction qui calcule la différence (production/conso)
+// Fonction qui calcule la différence (capacité/conso) pour le fichier minmax
 void diffCapConso(const char* cheminFichier){
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
