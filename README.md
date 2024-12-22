@@ -32,3 +32,7 @@ Cas indisponibles : hvb indiv/all et hva indiv/all
 ./c-wire.sh input/c-wire_v25.dat hva comp
 ```
 
+## Contributeur
+
+Ziyad HADDADI MI05
+Florian BRYUANT MI04
