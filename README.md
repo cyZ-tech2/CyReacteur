@@ -23,16 +23,16 @@ Cas indisponibles : hvb indiv/all et hva indiv/all
 ### Commande
 
 ```bash
-./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_consommateur(indiv, comp, all)] (centrale_id)
+bash ./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_consommateur(indiv, comp, all)] (centrale_id)
 ```
 
 ### Exemple
 
 ```bash
-./c-wire.sh input/c-wire_v25.dat hva comp
+bash ./c-wire.sh input/c-wire_v25.dat hva comp 2
 ```
 
 ## Contributeur
 
-Ziyad HADDADI MI05
-Florian BRYUANT MI04
+Ziyad HADDADI MI05 <br>
+Florian BRYUANT MI04 <br>
