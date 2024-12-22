@@ -1,6 +1,7 @@
 #include "../include/avl.h"
 #include "../include/maths.h"
 
+//Creation de l'arbre
 Arbre* creerArbre(Donnees d) {
     Arbre* nouv = malloc(sizeof(Arbre));
     if (nouv == NULL) {
@@ -44,16 +45,19 @@ Arbre* rotationDroite(Arbre* a) {
     return pivot; 
 }
 
+// Double rotation de l'arbre (à gauche)
 Arbre* doubleRotationGauche(Arbre* a){
 	a->fd = rotationDroite(a->fd);
 	return rotationGauche(a);
 }
 
+// Double rotation de l'arbre (à droite)
 Arbre* doubleRotationDroite(Arbre* a){
 	a->fg = rotationGauche(a->fg);   
 	return rotationDroite(a);
 }
 
+//Equilibrage de l'arbre
 Arbre* equilibrerAVL(Arbre* a){
 	if(a->eq >= 2){
 		if(a->fd->eq >= 0){
@@ -74,6 +78,7 @@ Arbre* equilibrerAVL(Arbre* a){
 	return a;
 }
 
+//Insertion des données dans l'arbre
 Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     if (a == NULL) {
         *h = 1;
@@ -118,6 +123,7 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
     return a;
 }
 
+// liberer la memoire
 void freeAVL(Arbre* a) {
     if (a == NULL) {
         return;
@@ -131,6 +137,7 @@ void freeAVL(Arbre* a) {
     free(a);
 }
 
+// Afficher l'arbre
 void afficherAVL(Arbre* a, FILE* fichier) {
     if (a == NULL) {
         return; // Aucun affichage pour un nœud vide
@@ -151,6 +158,7 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
+//Calculer la somme des consommations
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
         AVLstation->donnees.conso = AVLconso->donnees.conso;
