@@ -69,6 +69,12 @@ else
 	rm -rf tests/*
 fi
 
+if [ ! -d graphs ] ; then # verif dossier graphs
+	mkdir graphs
+else
+	rm -rf graphs/*
+fi
+
 case $2 in #filtrage
 	hvb) if [ $# = 4 ] ; then
 		grep "^$4;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
@@ -123,6 +129,8 @@ if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
 	(head -n 5 && tail -n 5) < "tmp/minmaxTmp2.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
 
 fi
+
+gnuplot fichier.gnu
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
