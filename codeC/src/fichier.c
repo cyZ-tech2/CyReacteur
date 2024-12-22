@@ -28,31 +28,26 @@ Arbre* construireAVLStation(const char* cheminFichier) {
     return a;
 }
 
-// Fonction pour construire l'AVL des consommateurs
-Arbre* construireAVLConso(const char* cheminFichier) {
+// Parcours le fichier filtreConso et ajoute les consommations de chaque consommateur à l'arbre
+void sommeConso(const char* cheminFichier,Arbre* a) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         perror("Erreur: fichier source non ouvert");
         exit(EXIT_FAILURE);
     }
 
-    Arbre* a = NULL;
     char ligne[256];
-    int h = 0;
-    Donnees d;
-    d.produc = 0;
+    unsigned long id,conso;
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
-        if (sscanf(ligne, "%lu;%lu", &d.id, &d.conso) == 2) {
-            a = insertionAVL(a, d, &h);
+        if (sscanf(ligne, "%lu;%lu", &id, &conso) == 2) {
+            ajoutConso(a, id,conso);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }
     }
     fclose(fichier);
-
-    return a;
 }
 
 // Fonction pour afficher l'AVL dans un fichier

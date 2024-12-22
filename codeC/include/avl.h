@@ -37,4 +37,4 @@ void freeAVL(Arbre* a);
 //affiche l'arbre
 void afficherAVL(Arbre* a, FILE* fichier);
 // Fonction qui ajoute les valeurs de consommation de l'AVL des conso dans l'AVL des stations
-void ajoutConso(Arbre* AVLstation, Arbre* AVLconso);
+void ajoutConso(Arbre* a, unsigned long id, unsigned long conso);
