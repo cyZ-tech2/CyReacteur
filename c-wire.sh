@@ -137,6 +137,14 @@ esac
 
 echo "Filtrage terminé !"
 
+echo "Nous trions vos données..."
+
+# On trie les données pour s'assurer qu'elles soient bien triées par ordre de station
+sort -t';' -k1n < "tmp/filtreStation.csv" 1<> "tmp/filtreStation.csv"
+sort -t';' -k1n < "tmp/filtreConso.csv" 1<> "tmp/filtreConso.csv" 
+
+echo "Tri terminé !"
+
 echo "Nous traitons vos données"
 
 # On lance le programme de traitement
