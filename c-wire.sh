@@ -141,9 +141,9 @@ echo "Nous traitons vos données"
 
 # On lance le programme de traitement
 
-if [ ! -x 'codeC/exec' ] ; then #verif executable C
-	make -C codeC
-fi
+#if [ ! -x 'codeC/exec' ] ; then #verif executable C
+make -C codeC
+#fi
 
 if [ $# = 4 ] ; then
 	./codeC/exec tests/$2_$3_$4.csv $2 $3 $4
