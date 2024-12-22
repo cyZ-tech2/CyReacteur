@@ -3,7 +3,7 @@
 # Retourne un message d'aide
 aide(){
  	echo "Aide : "
-	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" # à voir
+	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" 
 	echo "ARGUMENT :"
 	echo "ARG[1] : Fichier d'entrée"
 	echo "ARG[2] : Type de station (hvb, hva ou lv)"

@@ -34,7 +34,7 @@ bash ./c-wire.sh input/c-wire_v25.dat hva comp 2
 
 ## Bonus 
 
-Graphique en barre des 10 postes lv 
+Graphique en barre des 10 postes LV les plus chargés, et les 10 postes LV les moins chargés. 
 
 ## Contributeur
 
