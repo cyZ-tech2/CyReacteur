@@ -116,6 +116,9 @@ case $2 in #filtrage
 	;;
 esac
 
+sort -t';' -k1n < "tmp/filtreStation.csv" 1<> "tmp/filtreStation.csv"
+sort -t';' -k1n < "tmp/filtreConso.csv" 1<> "tmp/filtreConso.csv" 
+
 make -C codeC
 if [ $# = 4 ] ; then
 	./codeC/exec tests/$2_$3_$4.csv $2 $3 $4
@@ -124,13 +127,11 @@ else
 fi
 
 if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
-	sort -t ':' -k3n "tmp/minmaxTmp.csv" > "tmp/minmaxTmp2.csv"
+	sort -t ':' -k3n < "tmp/minmaxTmp.csv" 1<> "tmp/minmaxTmp.csv"
 	echo "Station lv:Capacité:Consommation (all)" > "tests/lv_all_minmax.csv"
-	(head -n 10 && tail -n 10) < "tmp/minmaxTmp2.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
-
+	(head -n 10 && tail -n 10) < "tmp/minmaxTmp.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
+	gnuplot fichier.gnu
 fi
-
-gnuplot fichier.gnu
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
