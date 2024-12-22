@@ -2,15 +2,15 @@
 
 aide(){
 	#message d'aide
- 	echo"Aide : "
-	echo"Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
-	echo"ARGUMENT :"
-	echo"ARG[1] : Fichier d'entrée"
-	echo"ARG[2] : Type de station (hvb, hva ou lv)"
-	echo"ARG[3] : Type de consommateur (comp, indiv ou all)"
-	echo"ARG[4] : (Optionnel) : l'ID de la centrale électrique"
-	echo"OPTION :"
-	echo"-h pour accéder à l'aide de cette commande"
+ 	echo "Aide : "
+	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
+	echo "ARGUMENT :"
+	echo "ARG[1] : Fichier d'entrée"
+	echo "ARG[2] : Type de station (hvb, hva ou lv)"
+	echo "ARG[3] : Type de consommateur (comp, indiv ou all)"
+	echo "ARG[4] : (Optionnel) : l'ID de la centrale électrique"
+	echo "OPTION :"
+	echo "-h pour accéder à l'aide de cette commande"
 	return 0
 }
 
@@ -69,6 +69,12 @@ else
 	rm -rf tests/*
 fi
 
+if [ ! -d graphs ] ; then # verif dossier graphs
+	mkdir graphs
+else
+	rm -rf graphs/*
+fi
+
 case $2 in #filtrage
 	hvb) if [ $# = 4 ] ; then
 		grep "^$4;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
@@ -123,6 +129,8 @@ if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
 	(head -n 5 && tail -n 5) < "tmp/minmaxTmp2.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
 
 fi
+
+gnuplot fichier.gnu
 
 #if [ -x 'codeC/exec' ] ; then #verif executable C
 #	./codeC/exec
