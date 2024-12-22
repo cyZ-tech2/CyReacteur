@@ -24,6 +24,10 @@ int main(int argc, char * argv[]) {
 
     // Libérer les AVL
     freeAVL(Stations);
+    free(fichierStations);
+    free(fichierSortie);
+    free(typeStation);
+    free(typeConso);
 
     return 0;
 }
