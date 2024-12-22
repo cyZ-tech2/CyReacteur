@@ -25,6 +25,9 @@ Cas indisponibles : hvb indiv/all et hva indiv/all
 ```bash
 ./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_consommateur(indiv, comp, all)] (centrale_id)
 ```
+### Resultats
+
+Des resultats d'executions sont dans le fichier testv0
 
 ### Exemple
 
