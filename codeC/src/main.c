@@ -13,13 +13,14 @@ int main(int argc, char * argv[]) {
     Arbre* Stations = construireAVLStation(fichierStations);
     Arbre* Conso = construireAVLConso("tmp/filtreConso.csv");
 
-    // On fait la somme des consommations de chaque consommateur
+    // On ajoute les consommateurs de l'AVLconso à l'AVLstation
     sommeConso(Stations,Conso);
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
     AVLDansFichier(Stations, fichierSortie, typeStation, typeConso);
 
+    //Pour l'option lv all on ajoute la différence entre la capacité et la conso dans une nouvelle colonne
     if(strcmp(typeStation,"lv")==0 && strcmp(typeConso,"all")==0 && argc == 4){
         diffCapConso(fichierSortie);
     }
