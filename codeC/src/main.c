@@ -3,12 +3,13 @@
 #include <string.h>
 
 int main(int argc, char * argv[]) {
+    // On déclare les variables nécessaires
     const char* fichierStations = "tmp/filtreStation.csv";
     const char* fichierSortie = argv[1];
     const char* typeStation = argv[2];
     const char* typeConso = argv[3];
 
-    // Lire le fichier et construire l'AVL
+    // On lit les fichiers temporaires et on construits les AVL
     Arbre* Stations = construireAVLStation(fichierStations);
     Arbre* Conso = construireAVLConso("tmp/filtreConso.csv");
 
@@ -23,7 +24,7 @@ int main(int argc, char * argv[]) {
         diffCapConso(fichierSortie);
     }
 
-    // Libérer l'arbre AVL
+    // Libérer les AVL
     freeAVL(Stations);
     freeAVL(Conso);
 

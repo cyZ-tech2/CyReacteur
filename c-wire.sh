@@ -1,7 +1,7 @@
 #!/bin/bash
 
+# Retourne un message d'aide
 aide(){
-	#message d'aide
  	echo "Aide : "
 	echo "Commande : ./c-wire.sh [ARGUMENT] [OPTION]" //à voir
 	echo "ARGUMENT :"
@@ -14,17 +14,20 @@ aide(){
 	return 0
 }
 
+# On récupère la date du début du programme
 debut=$(date +%s)
 
+# Retourne le temps écoulé depuis le début du programme
 duree(){
-	#retourne le temps écoulé depuis le début du programme
-	fin=$(date +%s)
-	duree=$(( $fin - $debut ))
+	fin=$(date +%s) #récupère la date de fin
+	duree=$(( $fin - $debut )) #on calcule la durée du programme
 	echo "$duree secondes"
 	return 0
 }
 
-for i in $*; do # aide
+	# Vérification arguments
+
+for i in $*; do # vérifie si l'argument -h est présent
 	if [ "$i" = "-h" ] ; then
 		aide
 		duree
@@ -88,8 +91,11 @@ echo ""
 
 echo "Nous filtrons vos données..."
 
-case $2 in #filtrage
-	hvb) if [ $# = 4 ] ; then
+# On filtre les données à l'aide de grep en spécifiant le format correspondant au type de station et au type de conso voulu
+# Ensuite on garde uniquement les champs utiles au traitement des données (id station, capacité et consommation)
+# Enfin on met les données filtrées dans un fichier temporaire
+case $2 in
+	hvb) if [ $# = 4 ] ; then # On vérifie si une centrale particulière est demandée
 		grep "^$4;[^-;]*;-;-;-;-" "$1" | cut -d ';' -f 2,7 > "tmp/filtreStation.csv" 
 		grep "^$4;[^-;]*;-;-;[^-;]*;-" "$1" | cut -d ';' -f 2,8  > "tmp/filtreConso.csv" 
 	else
@@ -133,6 +139,7 @@ echo "Filtrage terminé !"
 
 echo "Nous trions vos données..."
 
+# On trie les données pour s'assurer qu'elles soient bien triées par ordre de station
 sort -t';' -k1n < "tmp/filtreStation.csv" 1<> "tmp/filtreStation.csv"
 sort -t';' -k1n < "tmp/filtreConso.csv" 1<> "tmp/filtreConso.csv" 
 
@@ -140,7 +147,12 @@ echo "Tri terminé !"
 
 echo "Nous traitons vos données"
 
-make -C codeC
+# On lance le programme de traitement
+
+if [ ! -x 'codeC/exec' ] ; then #verif executable C
+	make -C codeC
+fi
+
 if [ $# = 4 ] ; then
 	./codeC/exec tests/$2_$3_$4.csv $2 $3 $4
 else
@@ -149,17 +161,12 @@ fi
 
 echo "Traitement terminé !"
 
+# On créé le fichier minmax et le graph dans le cas du traitement lv all
 if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
 	sort -t ':' -k3n < "tmp/minmaxTmp.csv" 1<> "tmp/minmaxTmp.csv"
 	echo "Station lv:Capacité:Consommation (all)" > "tests/lv_all_minmax.csv"
 	(head -n 10 && tail -n 10) < "tmp/minmaxTmp.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
 	gnuplot fichier.gnu
 fi
-
-#if [ -x 'codeC/exec' ] ; then #verif executable C
-#	./codeC/exec
-#else
-
-#fi
 
 echo "Le programme à duré :" &duree
