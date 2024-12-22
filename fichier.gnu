@@ -1,4 +1,4 @@
-set term png size 960,720
+set term png size 1600,900
 set output "graphs/graphMinMax.png"
 set boxwidth 0.5
 set style fill solid
