@@ -28,6 +28,7 @@ Arbre* construireAVLStation(const char* cheminFichier) {
     return a;
 }
 
+// Fonction pour construire l'arbre
 Arbre* construireAVLConso(const char* cheminFichier) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
@@ -66,6 +67,7 @@ void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation
     fclose(fichierSortie);
 }
 
+// Fonction qui calcule la différence (production/conso)
 void diffCapConso(const char* cheminFichier){
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
