@@ -85,9 +85,7 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
         return creerArbre(d);
     }
 
-    /* (Pour les consommateurs) 
-    Quand plusieurs consommateurs sont reliés à la même station (même id) on somme leur consommation*/
-    if(d.id == a->donnees.id){ 
+    if(d.id == a->donnees.id){
         a->donnees.conso += d.conso;
         *h = 0;
         return a;
@@ -97,7 +95,10 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h) {
         *h = -*h;
     } else if (d.id > a->donnees.id) {
         a->fd = insertionAVL(a->fd, d, h);
-    } 
+    } else {
+        *h = 0;
+        return a;
+    }
 
     if (*h != 0) {
         a->eq += *h;
@@ -157,8 +158,8 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
-// Fonction qui ajoute les valeurs de consommation de l'AVL des conso dans l'AVL des stations
-void ajoutConso(Arbre* AVLstation, Arbre* AVLconso) {  
+// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
         AVLstation->donnees.conso = AVLconso->donnees.conso;
         sommeConso(AVLstation->fg,AVLconso->fg);

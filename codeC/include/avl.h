@@ -4,11 +4,9 @@
 
 //Structures
 typedef struct donnees {
-    unsigned long id; /*id de la station pour les stations,
-    et de la station à laquelle le consommateur est relié pour les consommateurs*/
-
+    unsigned long id;
     unsigned long conso;
-    unsigned long produc; //Capacité
+    unsigned long produc;
 } Donnees;
 
 // Structure pour l'arbre AVL
@@ -36,5 +34,5 @@ Arbre* insertionAVL(Arbre* a, Donnees d, int* h);
 void freeAVL(Arbre* a);
 //affiche l'arbre
 void afficherAVL(Arbre* a, FILE* fichier);
-// Fonction qui ajoute les valeurs de consommation de l'AVL des conso dans l'AVL des stations
-void ajoutConso(Arbre* AVLstation, Arbre* AVLconso);
+// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
+void sommeConso(Arbre* AVLstation, Arbre* AVLconso);
