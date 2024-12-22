@@ -158,7 +158,7 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
-//Calculer la somme des consommations
+// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
         AVLstation->donnees.conso = AVLconso->donnees.conso;
