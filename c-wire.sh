@@ -126,7 +126,7 @@ fi
 if [ "$2" = "lv" ] && [ "$3" = "all" ] && [ $# = 3 ]; then
 	sort -t ':' -k3n "tmp/minmaxTmp.csv" > "tmp/minmaxTmp2.csv"
 	echo "Station lv:Capacité:Consommation (all)" > "tests/lv_all_minmax.csv"
-	(head -n 5 && tail -n 5) < "tmp/minmaxTmp2.csv" | sort -t':' -k4nr | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
+	(head -n 10 && tail -n 10) < "tmp/minmaxTmp2.csv" | sort -t':' -k4n | cut -d ':' -f 1-3 >> "tests/lv_all_minmax.csv"
 
 fi
 

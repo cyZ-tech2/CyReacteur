@@ -86,7 +86,7 @@ void diffCapConso(const char* cheminFichier){
 
     while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
         if (sscanf(ligne, "%lu:%lu:%lu", &d.id, &d.produc, &d.conso) == 3) {
-            fprintf(fichierMinMax, "%lu:%lu:%lu:%lu\n",d.id, d.produc, d.conso, labs(d.produc-d.conso));
+            fprintf(fichierMinMax, "%lu:%lu:%lu:%li\n",d.id, d.produc, d.conso, d.produc-d.conso);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }
