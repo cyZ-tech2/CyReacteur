@@ -29,23 +29,21 @@ Arbre* construireAVLStation(const char* cheminFichier) {
 }
 
 // Fonction pour construire l'AVL des consommateurs
-Arbre* construireAVLConso(const char* cheminFichier) {
+Arbre* construireAVLConso(const char* cheminFichier,Arbre* a) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
         perror("Erreur: fichier source non ouvert");
         exit(EXIT_FAILURE);
     }
 
-    Arbre* a = NULL;
     char ligne[256];
-    int h = 0;
     Donnees d;
     d.produc = 0;
 
     // Lire le fichier ligne par ligne
     while (fgets(ligne, sizeof(ligne), fichier)!=NULL) {
         if (sscanf(ligne, "%lu;%lu", &d.id, &d.conso) == 2) {
-            a = insertionAVL(a, d, &h);
+            a = ajoutConso(a, d);
         } else {
             fprintf(stderr, "Erreur de format : %s\n", ligne);
         }

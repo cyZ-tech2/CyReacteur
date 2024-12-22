@@ -11,10 +11,8 @@ int main(int argc, char * argv[]) {
 
     // On lit les fichiers temporaires et on construits les AVL
     Arbre* Stations = construireAVLStation(fichierStations);
-    Arbre* Conso = construireAVLConso("tmp/filtreConso.csv");
+    Stations = construireAVLConso("tmp/filtreConso.csv",Stations);
 
-    // On fait la somme des consommations de chaque consommateur
-    sommeConso(Stations,Conso);
 
     // Écrire l'AVL dans un fichier de sortie
     printf("Écriture de l'AVL dans %s...\n", fichierSortie);
@@ -26,7 +24,6 @@ int main(int argc, char * argv[]) {
 
     // Libérer les AVL
     freeAVL(Stations);
-    freeAVL(Conso);
 
     return 0;
 }
