@@ -17,6 +17,9 @@ Arbre* creerArbre(Donnees d) {
 
 // Rotation gauche de l'arbre (à gauche)
 Arbre* rotationGauche(Arbre* a) {
+    if(a==NULL){
+        exit(1);
+    }
     Arbre* pivot = a->fd;  
     int eq_a, eq_p;
     a->fd = pivot->fg;     
@@ -32,6 +35,9 @@ Arbre* rotationGauche(Arbre* a) {
 
 // Rotation droite de l'arbre (à droite)
 Arbre* rotationDroite(Arbre* a) {
+    if(a==NULL){
+        exit(1);
+    }
     Arbre* pivot = a->fg;  
     int eq_a, eq_p;
     a->fg = pivot->fd;     
@@ -47,18 +53,27 @@ Arbre* rotationDroite(Arbre* a) {
 
 // Double rotation de l'arbre (à gauche)
 Arbre* doubleRotationGauche(Arbre* a){
+    if(a==NULL){
+        exit(1);
+    }
 	a->fd = rotationDroite(a->fd);
 	return rotationGauche(a);
 }
 
 // Double rotation de l'arbre (à droite)
 Arbre* doubleRotationDroite(Arbre* a){
+    if(a==NULL){
+        exit(1);
+    }
 	a->fg = rotationGauche(a->fg);   
 	return rotationDroite(a);
 }
 
 //Equilibrage de l'arbre
 Arbre* equilibrerAVL(Arbre* a){
+    if(a==NULL){
+        exit(1);
+    }
 	if(a->eq >= 2){
 		if(a->fd->eq >= 0){
 			return rotationGauche(a);
@@ -142,7 +157,9 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     if (a == NULL) {
         return; // Aucun affichage pour un nœud vide
     }
-    
+    if(fichier == NULL){
+        exit(1);
+    }
     // Parcourir l'arbre en ordre croissant
     afficherAVL(a->fg, fichier); // Affiche le sous-arbre gauche
     
@@ -158,7 +175,7 @@ void afficherAVL(Arbre* a, FILE* fichier) {
     afficherAVL(a->fd, fichier); // Affiche le sous-arbre droit
 }
 
-// Fonction qui parcourt le fichier filtreConso et fait la somme des consommateurs pour chaque station
+// Fonction qui combine les deux arbres afin d'avoir la production et la consommation pour chaque station
 void sommeConso(Arbre* AVLstation, Arbre* AVLconso) {  
     if(AVLconso != NULL && AVLstation != NULL){
         AVLstation->donnees.conso = AVLconso->donnees.conso;

@@ -57,6 +57,9 @@ Arbre* construireAVLConso(const char* cheminFichier) {
 
 // Fonction pour afficher l'AVL dans un fichier
 void AVLDansFichier(Arbre* a, const char* cheminFichier, const char* typeStation, const char* typeConso) {
+    if(a==NULL){
+        exit(2);
+    }
     FILE* fichierSortie = fopen(cheminFichier, "w");
     if (fichierSortie == NULL) {
         perror("Erreur: impossible d'ouvrir le fichier de sortie");
