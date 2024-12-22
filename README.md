@@ -29,7 +29,7 @@ bash ./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_cons
 ### Exemple
 
 ```bash
-bash ./c-wire.sh input/c-wire_v25.dat hva comp
+bash ./c-wire.sh input/c-wire_v25.dat hva comp 2
 ```
 
 ## Contributeur
