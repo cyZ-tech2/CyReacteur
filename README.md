@@ -32,6 +32,10 @@ bash ./c-wire.sh input/[fichier_entrée] [type_station(hvb, hva, lv)] [type_cons
 bash ./c-wire.sh input/c-wire_v25.dat hva comp 2
 ```
 
+## Bonus 
+
+Graphique en barre des 10 postes lv 
+
 ## Contributeur
 
 Ziyad HADDADI MI05 <br>
