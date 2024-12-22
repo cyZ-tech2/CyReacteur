@@ -28,7 +28,7 @@ Arbre* construireAVLStation(const char* cheminFichier) {
     return a;
 }
 
-// Fonction pour construire l'AVL des consommateurs
+// Parcours le fichier filtreConso et ajoute les consommations de chaque consommateur à l'arbre
 Arbre* sommeConso(const char* cheminFichier,Arbre* a) {
     FILE* fichier = fopen(cheminFichier, "r");
     if (fichier == NULL) {
