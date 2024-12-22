@@ -5,6 +5,7 @@ set style fill solid
 set datafile separator ':'
 set xlabel "Stations LV"
 set ylabel "Différence capacité-consommation"
+set key noautotitle
 
 f(x,y) = x>y ? 0x32c259 : 0xe62c2c
 
